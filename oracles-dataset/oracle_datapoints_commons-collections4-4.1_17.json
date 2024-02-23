@@ -230,7 +230,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6121,
-  "oracle" : "((key instanceOf Comparable) || (value instanceOf Comparable)) == false;",
+  "oracle" : "((key instanceOf Comparable) && (value instanceOf Comparable)) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
