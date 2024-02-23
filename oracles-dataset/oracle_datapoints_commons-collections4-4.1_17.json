@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6063,
-  "oracle" : ";",
+  "oracle" : "map == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6065,
-  "oracle" : ";",
+  "oracle" : "map == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6073,
-  "oracle" : ";",
+  "oracle" : "map == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6086,
-  "oracle" : ";",
+  "oracle" : "map == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6112,
-  "oracle" : ";",
+  "oracle" : "(key instanceOf Comparable) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6115,
-  "oracle" : ";",
+  "oracle" : "(value instanceOf Comparable) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
@@ -207,7 +207,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6117,
-  "oracle" : ";",
+  "oracle" : "(key instanceOf Comparable) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
@@ -230,7 +230,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6121,
-  "oracle" : ";",
+  "oracle" : "((key instanceOf Comparable) || (value instanceOf Comparable)) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
@@ -253,7 +253,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6127,
-  "oracle" : ";",
+  "oracle" : "(value instanceOf Comparable) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
@@ -276,7 +276,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6130,
-  "oracle" : ";",
+  "oracle" : "(value instanceOf Comparable) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",

@@ -1,6 +1,6 @@
 [ {
   "id" : 5845,
-  "oracle" : ";",
+  "oracle" : "start < 0 || start >= array.length;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 5854,
-  "oracle" : ";",
+  "oracle" : "array.getClass().isArray();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 5873,
-  "oracle" : ";",
+  "oracle" : "(offset < 0 || offset >= receiverObjectID.size(iterator)) == false;",
   "oracleType" : "PRE",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 5920,
-  "oracle" : ";",
+  "oracle" : "methodResultID instanceOf PeekingIterator;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",

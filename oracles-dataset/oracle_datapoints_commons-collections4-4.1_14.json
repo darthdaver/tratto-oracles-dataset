@@ -230,7 +230,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 5818,
-  "oracle" : ";",
+  "oracle" : "array.getClass().isArray();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
@@ -276,7 +276,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 5838,
-  "oracle" : ";",
+  "oracle" : "start < 0 || start >= array.length || end < 0 || end >= array.length;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
