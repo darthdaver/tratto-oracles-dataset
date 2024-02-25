@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6866,
-  "oracle" : ";",
+  "oracle" : "true : methodResultID instanceOf Predicate<?>;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6872,
-  "oracle" : ";",
+  "oracle" : "predicate != null;",
   "oracleType" : "PRE",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6877,
-  "oracle" : ";",
+  "oracle" : "predicates.stream().anyMatch(jdVar -> jdVar == null);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6882,
-  "oracle" : ";",
+  "oracle" : "true : methodResultID instanceOf Transformer<?,?> : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6890,
-  "oracle" : ";",
+  "oracle" : "Array.stream(predicates).anyMatch(jdVar -> jdVar == null) || Array.stream(transformer).anyMatch(jdVar -> jdVar == null);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6895,
-  "oracle" : ";",
+  "oracle" : "map.values().stream().anyMatch(jdVar -> jdVar == null);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6911,
-  "oracle" : ";",
+  "oracle" : "true : methodResultID instanceOf Transformer<?,?> : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -253,7 +253,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6936,
-  "oracle" : ";",
+  "oracle" : "closures.stream().anyMatch(jdVar -> jdVar == null);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",

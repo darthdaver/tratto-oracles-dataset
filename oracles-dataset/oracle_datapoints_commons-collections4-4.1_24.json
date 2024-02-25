@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6784,
-  "oracle" : ";",
+  "oracle" : "true ? this.getValue() == object : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6822,
-  "oracle" : ";",
+  "oracle" : "this.getTransformer().transform(object) == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6830,
-  "oracle" : ";",
+  "oracle" : "true ? methodResultID == null : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",

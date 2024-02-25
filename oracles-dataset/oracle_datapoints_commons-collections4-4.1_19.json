@@ -322,7 +322,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6292,
-  "oracle" : "receiverObjectID() == null;",
+  "oracle" : "this.getMutator() == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.collection",

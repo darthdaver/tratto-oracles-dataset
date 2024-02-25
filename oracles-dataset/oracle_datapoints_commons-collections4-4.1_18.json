@@ -276,7 +276,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6220,
-  "oracle" : ";",
+  "oracle" : "map.keySet().stream().anyMatch(jdVar -> jdVar instanceOf Comparable) || map.values().stream().anyMatch(jdVar -> jdVar instanceOf Comparable);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",
@@ -299,7 +299,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6221,
-  "oracle" : ";",
+  "oracle" : "map.keySet().stream().anyMatch(jdVar -> jdVar == null) || map.values().stream().anyMatch(jdVar -> jdVar == null);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.bidimap",

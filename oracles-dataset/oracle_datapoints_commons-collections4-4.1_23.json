@@ -1,6 +1,6 @@
 [ {
   "id" : 6642,
-  "oracle" : ";",
+  "oracle" : "out == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6652,
-  "oracle" : ";",
+  "oracle" : "array[0] instanceOf Object[] and Arrays.stream(array).anyMatch(jdVar -> jdVar == null || ((Object[]) jdVar)[0] == null || ((Object[]) jdVar).length < 2);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
