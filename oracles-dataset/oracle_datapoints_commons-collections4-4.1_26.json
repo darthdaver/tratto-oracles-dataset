@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6971,
-  "oracle" : ";",
+  "oracle" : "((paramTypes == null) && (args != null)) || ((paramTypes != null) && (args == null)) || ((paramTypes != null) && (args != null) && (paramTypes.length != args.length));",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6995,
-  "oracle" : ";",
+  "oracle" : "true ? methodResultID == this.getConstant() : true;",
   "oracleType" : "PRE",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 7002,
-  "oracle" : ";",
+  "oracle" : "transformers.stream().anyMatch(jdVar -> jdVar == null);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 7031,
-  "oracle" : ";",
+  "oracle" : "predicates.stream().anyMatch(jdVar -> jdVar == null);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.functors",
