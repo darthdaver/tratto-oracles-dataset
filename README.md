@@ -15,9 +15,9 @@ To easily remove an oracle from a file of the original dataset, there are two op
     ```shell
     
     ```shell
-    \{\s*"id"\s*:\s*8436[.\s\S]*?"tokensOracleVariablesNonPrivateNonStaticAttributes"[.\s\S]*?\},?
+    \{\s*"id"\s*:\s*NUMBER[.\s\S]*?"tokensOracleVariablesNonPrivateNonStaticAttributes"[.\s\S]*?\},?
     ```
-   Where you have to substitute the NUMBER with the identifier of the datapoint you want to select. For example:
+   Where you have to substitute the `NUMBER` with the identifier of the datapoint you want to select. For example:
     ```shell
     \{\s*"id"\s*:\s*7050[.\s\S]*?"tokensOracleVariablesNonPrivateNonStaticAttributes"[.\s\S]*?\},?
     ```

@@ -1,6 +1,6 @@
 [ {
   "id" : 9568,
-  "oracle" : ";",
+  "oracle" : "this.containsValue(item) ? methodResultID == false && (this.get(key) == null) == false : methodResultID == true && this.get(key) == null;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
@@ -253,7 +253,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9606,
-  "oracle" : ";",
+  "oracle" : "this.hasNext() == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",
@@ -276,7 +276,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9618,
-  "oracle" : ";",
+  "oracle" : "this.checkNotStarted() == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",
@@ -299,7 +299,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9619,
-  "oracle" : ";",
+  "oracle" : "index >= 0 && index < IteratorUtils.size(iterator);",
   "oracleType" : "PRE",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",
@@ -322,7 +322,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9621,
-  "oracle" : ";",
+  "oracle" : "index < 0 || index >= IteratorUtils.size(iterator);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",
@@ -345,7 +345,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9622,
-  "oracle" : ";",
+  "oracle" : "this.checkNotStarted() == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",
@@ -368,7 +368,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9629,
-  "oracle" : ";",
+  "oracle" : "this.hasNext() == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",
@@ -414,7 +414,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9631,
-  "oracle" : ";",
+  "oracle" : "true ? methodResultID > -1 : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",
@@ -483,7 +483,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9635,
-  "oracle" : ";",
+  "oracle" : "this.getComparator() == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",
