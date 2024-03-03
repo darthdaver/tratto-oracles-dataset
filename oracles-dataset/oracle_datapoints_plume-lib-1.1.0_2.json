@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10187,
-  "oracle" : ";",
+  "oracle" : "filenames.size() == 0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",

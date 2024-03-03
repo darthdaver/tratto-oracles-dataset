@@ -1,6 +1,6 @@
 [ {
   "id" : 10328,
-  "oracle" : ";",
+  "oracle" : "start >= 0 && start < seq.length;",
   "oracleType" : "PRE",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",
@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10381,
-  "oracle" : ";",
+  "oracle" : "(mg == null) == false;",
   "oracleType" : "PRE",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",
@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10384,
-  "oracle" : ";",
+  "oracle" : "(il == null) == false;",
   "oracleType" : "PRE",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",

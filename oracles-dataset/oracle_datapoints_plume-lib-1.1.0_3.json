@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10240,
-  "oracle" : ";",
+  "oracle" : "Arrays.stream(options).allMatch(jdVar -> jdVar.length <= 2);",
   "oracleType" : "PRE",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10322,
-  "oracle" : ";",
+  "oracle" : "true ? methodResultID.length <= seq.length;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",

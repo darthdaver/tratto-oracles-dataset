@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10054,
-  "oracle" : ";",
+  "oracle" : "base >= 0 ? (base == 0 && ((expt == 0) == false) && methodResultID == 0) || (base > 0 && methodResultID > 0) : (expt == 0 && methodResultID == 1) || (expt % 2 == 0 && methodResultID > 0) || (expt % 2 == 1 && methodResultID < 0);",
   "oracleType" : "NORMAL_POST",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",
@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10057,
-  "oracle" : ";",
+  "oracle" : "base >= 0 ? (base == 0 && ((expt == 0) == false) && methodResultID == 0) || (base > 0 && methodResultID > 0) : (expt == 0 && methodResultID == 1) || (expt % 2 == 0 && methodResultID > 0) || (expt % 2 == 1 && methodResultID < 0);",
   "oracleType" : "NORMAL_POST",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10122,
-  "oracle" : ";",
+  "oracle" : "true ? methodResultID.length == (s.length/2) : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",
