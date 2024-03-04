@@ -276,7 +276,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9292,
-  "oracle" : "index < 0 || index >= CollectionUtils.size(e)",
+  "oracle" : "index < 0 || index >= CollectionUtils.size(e);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
