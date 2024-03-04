@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2484,
-  "oracle" : "this.isAbsent();",
+  "oracle" : "this.isPresent() == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.base",

@@ -276,7 +276,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9292,
-  "oracle" : "index < 0 || index >= Collections.list(e).size();",
+  "oracle" : "index < 0 || index >= CollectionUtils.size(e)",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
@@ -322,7 +322,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9308,
-  "oracle" : "end1 >= start1;",
+  "oracle" : "end1 >= start;",
   "oracleType" : "PRE",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.sequence",

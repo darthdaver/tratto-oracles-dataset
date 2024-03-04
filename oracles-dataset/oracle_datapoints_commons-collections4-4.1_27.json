@@ -15757,7 +15757,7 @@
     },
     {
         "id": 7068,
-        "oracle": "predicates.stream().anyMatch(jdVar -> jdVar == null) || closures.stream().anyMatch(jdVar -> jdVar == null);",
+        "oracle": "Arrays.stream(predicates).anyMatch(jdVar -> jdVar == null) || Arrays.stream(closures).anyMatch(jdVar -> jdVar == null);",
         "oracleType": "EXCEPT_POST",
         "projectName": "commons-collections4-4.1",
         "packageName": "org.apache.commons.collections4.functors",

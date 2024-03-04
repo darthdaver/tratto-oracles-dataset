@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9750,
-  "oracle" : "startIndex >= 0 && startIndex < Array.getLength(array);",
+  "oracle" : "startIndex >= 0 && startIndex < CollectionUtils.size(array);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",
@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9752,
-  "oracle" : "startIndex >= 0 && startIndex <= endIndex && startIndex < Array.getLength(array);",
+  "oracle" : "startIndex >= 0 && startIndex <= endIndex && startIndex < CollectionUtils.size(array);",
   "oracleType" : "PRE",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",
@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 9755,
-  "oracle" : "startIndex < 0 || startIndex > endIndex || endIndex >= Array.getLength(array);",
+  "oracle" : "startIndex < 0 || startIndex > endIndex || endIndex >= CollectionUtils.size(array);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.iterators",

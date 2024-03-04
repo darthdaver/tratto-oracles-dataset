@@ -1,6 +1,6 @@
 [ {
   "id" : 5845,
-  "oracle" : "start < 0 || start >= array.length;",
+  "oracle" : "array.getClass().isArray();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 5873,
-  "oracle" : "(offset < 0 || offset >= this.size(iterator)) == false;",
+  "oracle" : "(offset < 0 || offset >= IteratorUtils.size(iterator)) == false;",
   "oracleType" : "PRE",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",

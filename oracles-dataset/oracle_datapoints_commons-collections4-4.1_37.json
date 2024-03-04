@@ -1,6 +1,6 @@
 [ {
   "id" : 8053,
-  "oracle" : "isEqualKey(key) == false;",
+  "oracle" : "this.isEqualKey(key) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.map",

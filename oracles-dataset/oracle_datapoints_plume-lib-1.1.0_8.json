@@ -1,6 +1,6 @@
 [ {
   "id" : 10734,
-  "oracle" : "true ? methodResultID.length >= objs.length : true;",
+  "oracle" : "true ? methodResultID.size() >= objs.size() : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",
@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10806,
-  "oracle" : "true? Arrays.stram(a).matchAll(jdVar -> jdVar >= methodResultID) : true;",
+  "oracle" : "true ? Arrays.stream(a).allMatch(jdVar -> jdVar >= methodResultID) : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10822,
-  "oracle" : "true? Arrays.stram(a).matchAll(jdVar -> jdVar <= methodResultID) : true;",
+  "oracle" : "true ? Arrays.stream(a).allMatch(jdVar -> jdVar <= methodResultID) : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",

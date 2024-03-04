@@ -1,6 +1,6 @@
 [ {
   "id" : 7541,
-  "oracle" : "true ? (methodResultID == null) == false ? true;;",
+  "oracle" : "true ? (methodResultID == null) == false : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 7573,
-  "oracle" : "this.uniquesSet().contains(object) ? methodResultID > 0 : methodResultID == 0;",
+  "oracle" : "this.uniqueSet().contains(object) ? methodResultID > 0 : methodResultID == 0;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",
