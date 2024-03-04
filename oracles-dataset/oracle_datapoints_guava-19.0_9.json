@@ -1,6 +1,6 @@
 [ {
   "id" : 900,
-  "oracle" : ";",
+  "oracle" : "table.containsRow(null) || table.containsColumn(null);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.collect",
@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 913,
-  "oracle" : ";",
+  "oracle" : "((this.hasLowerBound()) == false && (domain.hasLowerBound()) == false) || ((this.hasUpperBound()) == false && (domain.hasUpperBound()) == false);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.collect",
@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 974,
-  "oracle" : ";",
+  "oracle" : "(map instanceof EnumBiMap) == false && (map instanceof EnumHashBiMap) == false && map.isEmpty();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.collect",

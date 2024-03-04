@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2469,
-  "oracle" : ";",
+  "oracle" : "maxLength < truncationIndicator.length();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.base",
@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2483,
-  "oracle" : ";",
+  "oracle" : "first == null && second == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.base",
@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2484,
-  "oracle" : ";",
+  "oracle" : "this.isAbsent();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.base",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2489,
-  "oracle" : ";",
+  "oracle" : "this.isRunning() == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.base",
@@ -207,7 +207,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2496,
-  "oracle" : ";",
+  "oracle" : "string != null;",
   "oracleType" : "PRE",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.base",

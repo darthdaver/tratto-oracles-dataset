@@ -1,6 +1,6 @@
 [ {
   "id" : 2206,
-  "oracle" : ";",
+  "oracle" : "value > Byte.MAX_VALUE || value < Byte.MIN_VALUE;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.primitives",
@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2282,
-  "oracle" : ";",
+  "oracle" : "radix >= Character.MIN_RADIX && radix <= Character.MAX_RADIX;",
   "oracleType" : "PRE",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.primitives",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2283,
-  "oracle" : ";",
+  "oracle" : "radix < Character.MIN_RADIX || radix > Character.MAX_RADIX;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.primitives",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2284,
-  "oracle" : ";",
+  "oracle" : "string == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.primitives",
@@ -207,7 +207,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2288,
-  "oracle" : ";",
+  "oracle" : "value.signum() < 0 || value.bitLength() > Long.SIZE;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.primitives",

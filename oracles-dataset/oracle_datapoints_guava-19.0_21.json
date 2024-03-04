@@ -1,6 +1,6 @@
 [ {
   "id" : 2112,
-  "oracle" : ";",
+  "oracle" : "minLength >= 0;",
   "oracleType" : "PRE",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.primitives",
@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 2130,
-  "oracle" : ";",
+  "oracle" : "Arrays.stream(array).anyMatch(jdVar -> jdVar == target) ? methodResultID == true : methodResultID == false;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "guava-19.0",
   "packageName" : "com.google.common.primitives",
