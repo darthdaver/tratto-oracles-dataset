@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 26079,
-  "oracle" : ";",
+  "oracle" : "methodResultID == null ? this.containsEdge(methodResultID) == false : this.containsEdge(methodResultID);",
   "oracleType" : "NORMAL_POST",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht",

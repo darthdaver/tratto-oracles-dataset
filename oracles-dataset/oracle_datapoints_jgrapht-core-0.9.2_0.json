@@ -1564,7 +1564,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 25818,
-  "oracle" : ";",
+  "oracle" : "numVertices >= 0 && (numEdges <= (numVertices * (numVertices - 1) / 2));",
   "oracleType" : "PRE",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.experimental",
@@ -1587,7 +1587,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 25819,
-  "oracle" : ";",
+  "oracle" : "(numEdges >= 0) && (numEdges <= (numVertices * (numVertices - 1) / 2));",
   "oracleType" : "PRE",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.experimental",
@@ -1610,7 +1610,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 25820,
-  "oracle" : ";",
+  "oracle" : "numVertices < 0 || (numEdges < 0) || (numEdges > (numVertices * (numVertices - 1) / 2));",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.experimental",

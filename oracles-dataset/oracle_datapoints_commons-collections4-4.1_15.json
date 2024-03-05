@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 5920,
-  "oracle" : "true ? methodResultID instanceOf PeekingIterator : true;",
+  "oracle" : "true ? methodResultID instanceof PeekingIterator : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",

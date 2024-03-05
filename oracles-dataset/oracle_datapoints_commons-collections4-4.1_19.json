@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6264,
-  "oracle" : "(coll instanceOf BoundedCollection) == false;",
+  "oracle" : "(coll instanceof BoundedCollection) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4.collection",

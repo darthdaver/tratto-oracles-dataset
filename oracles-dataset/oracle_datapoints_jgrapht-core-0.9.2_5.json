@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 26271,
-  "oracle" : ";",
+  "oracle" : "((maxPathLength != null) && (maxPathLength < 0)) == false && ((simplePathsOnly == false) && (maxPathLength == null)) == false;",
   "oracleType" : "PRE",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.alg",
@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 26310,
-  "oracle" : ";",
+  "oracle" : "directedGraph == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.alg",

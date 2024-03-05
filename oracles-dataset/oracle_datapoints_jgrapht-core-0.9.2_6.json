@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 26387,
-  "oracle" : ";",
+  "oracle" : "directedGraph == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.alg",
@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 26416,
-  "oracle" : ";",
+  "oracle" : "graph.containsVertex(startVertex);",
   "oracleType" : "PRE",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.alg",

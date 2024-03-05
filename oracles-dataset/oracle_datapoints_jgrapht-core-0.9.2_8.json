@@ -1,6 +1,6 @@
 [ {
   "id" : 26542,
-  "oracle" : ";",
+  "oracle" : "maxSize >= 0;",
   "oracleType" : "PRE",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.alg",
@@ -23,7 +23,8 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 26557,
-  "oracle" : ";",
+  "oracle" : "pathElement.getPrevEdge() != null;",
+
   "oracleType" : "EXCEPT_POST",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.alg",
@@ -92,7 +93,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 26594,
-  "oracle" : ";",
+  "oracle" : "(g == null) == false;",
   "oracleType" : "PRE",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.alg",
