@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 25154,
-  "oracle" : ";",
+  "oracle" : "binCount > 0;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.random",
@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 25159,
-  "oracle" : ";",
+  "oracle" : "binCount <= 0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.random",
@@ -207,7 +207,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 25199,
-  "oracle" : ";",
+  "oracle" : "a == 0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3",
@@ -322,7 +322,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 25220,
-  "oracle" : ";",
+  "oracle" : "(obj instanceof BigFraction || obj instanceof BigInteger || obj instanceof Number) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.fraction",
