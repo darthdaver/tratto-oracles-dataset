@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 24776,
-  "oracle" : ";",
+  "oracle" : "z.getDimension() != this.getMeasurementDimension();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.filter",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 24779,
-  "oracle" : ";",
+  "oracle" : "z.getDimension() != this.getMeasurementDimension();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.filter",
@@ -207,7 +207,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 24783,
-  "oracle" : ";",
+  "oracle" : "process == null || measurement == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.filter",
@@ -230,7 +230,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 24784,
-  "oracle" : ";",
+  "oracle" : "process.getStateTransitionMatrix().isSquare() == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.filter",
@@ -299,7 +299,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 24793,
-  "oracle" : ";",
+  "oracle" : "Arrays.stream(stateTransition).anyMatch(jdVar -> jdVar.length == stateTransition.length) || Arrays.stream(control).anyMatch(jdVar -> jdVar.length == control.length) || Arrays.stream(processNoise).anyMatch(jdVar -> jdVar.length == processNoise.length);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.filter",
@@ -322,7 +322,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 24796,
-  "oracle" : ";",
+  "oracle" : "Arrays.stream(processNoise).allMatch(jdVar -> jdVar.length != 0);",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.filter",
@@ -345,7 +345,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 24797,
-  "oracle" : ";",
+  "oracle" : "Arrays.stream(stateTransition).anyMatch(jdVar -> jdVar.length == 0) || Arrays.stream(control).anyMatch(jdVar -> jdVar.length == 0) || Arrays.stream(processNoise).anyMatch(jdVar -> jdVar.length == 0);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.filter",
@@ -368,7 +368,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 24806,
-  "oracle" : ";",
+  "oracle" : "measMatrix == null || noiseMatrix == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.filter",
@@ -391,7 +391,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 24807,
-  "oracle" : ";",
+  "oracle" : "Arrays.stream(measMatrix).anyMatch(jdVar -> jdVar.length == 0) || Arrays.stream(measNoise).anyMatch(jdVar -> jdVar.length == 0);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.filter",
