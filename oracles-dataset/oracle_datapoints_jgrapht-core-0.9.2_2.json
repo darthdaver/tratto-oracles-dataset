@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 25965,
-  "oracle" : "g instanceof ListenableGraph<?, ?>;",
+  "oracle" : "g instanceof ListenableGraph;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.graph",

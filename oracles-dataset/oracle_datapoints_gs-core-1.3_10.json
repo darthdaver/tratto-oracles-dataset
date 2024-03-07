@@ -414,7 +414,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 3644,
-  "oracle" : ";",
+  "oracle" : "timeout >= 0;",
   "oracleType" : "PRE",
   "projectName" : "gs-core-1.3",
   "packageName" : "org.graphstream.stream",

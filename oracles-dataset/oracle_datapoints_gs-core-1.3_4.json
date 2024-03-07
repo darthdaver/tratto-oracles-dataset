@@ -1,6 +1,6 @@
 [ {
   "id" : 2997,
-  "oracle" : ";",
+  "oracle" : "maxy >= miny;",
   "oracleType" : "PRE",
   "projectName" : "gs-core-1.3",
   "packageName" : "org.graphstream.ui.view",
@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 3021,
-  "oracle" : ";",
+  "oracle" : "identifier.indexOf('.') >= 0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "gs-core-1.3",
   "packageName" : "org.graphstream.ui.spriteManager",

@@ -1,6 +1,6 @@
 [ {
   "id" : 26655,
-  "oracle" : ";",
+  "oracle" : "this.graph instanceof UndirectedGraph && this.graph.getEdgeWeight(edge) < 0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "jgrapht-core-0.9.2",
   "packageName" : "org.jgrapht.alg",
