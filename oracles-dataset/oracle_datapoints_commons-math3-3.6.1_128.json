@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23880,
-  "oracle" : ";",
+  "oracle" : "p1.subtract(p2).getNormSq() != 0.0;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23897,
-  "oracle" : ";",
+  "oracle" : "this.distance(p) < this.getTolerance() ? methodResultID == true : methodResultID == false;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",

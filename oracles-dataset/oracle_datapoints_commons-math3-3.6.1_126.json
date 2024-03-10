@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23720,
-  "oracle" : ";",
+  "oracle" : "axis.getNorm().getReal() == 0.0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23724,
-  "oracle" : ";",
+  "oracle" : "axis.getNorm().getReal() == 0.0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",
@@ -207,7 +207,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23732,
-  "oracle" : ";",
+  "oracle" : "u1.getNorm().getReal() == 0.0 || u2.getNorm().getReal() == 0.0 || v1.getNorm().getReal() == 0.0 || v2.getNorm().getReal() == 0.0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",

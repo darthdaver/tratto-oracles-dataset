@@ -1,6 +1,6 @@
 [ {
   "id" : 22439,
-  "oracle" : ";",
+  "oracle" : "numCall > 0;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ml.neuralnet.sofm.util",
@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 22449,
-  "oracle" : ";",
+  "oracle" : "initValue > 0;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ml.neuralnet.sofm",
@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 22491,
-  "oracle" : ";",
+  "oracle" : "data.iterator().hasNext() == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ml.neuralnet",
@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 22496,
-  "oracle" : ";",
+  "oracle" : "data.iterator().hasNext() == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ml.neuralnet",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 22502,
-  "oracle" : ";",
+  "oracle" : "features.length != this.getFeaturesSize();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ml.neuralnet",
@@ -207,7 +207,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 22508,
-  "oracle" : ";",
+  "oracle" : "this.getNeuron(a.getIdentifier()) != a || this.getNeuron(b.getIdentifier()) != b;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ml.neuralnet",
@@ -253,7 +253,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 22513,
-  "oracle" : ";",
+  "oracle" : "this.getNeuron(a.getIdentifier()) != a || this.getNeuron(b.getIdentifier()) != b;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ml.neuralnet",

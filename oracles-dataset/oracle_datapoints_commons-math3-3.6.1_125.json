@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23555,
-  "oracle" : ";",
+  "oracle" : "axis.getNorm() == 0.0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",
@@ -69,7 +69,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23567,
-  "oracle" : ";",
+  "oracle" : "u1.getNorm() == 0.0 || v1.getNorm() == 0.0 || u2.getNorm() == 0.0 || v2.getNorm() == 0.0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",
@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23569,
-  "oracle" : ";",
+  "oracle" : "v.getNorm() != 0.0;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",
@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23570,
-  "oracle" : ";",
+  "oracle" : "u.getNorm() == 0.0 || v.getNorm() == 0.0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",
@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23590,
-  "oracle" : ";",
+  "oracle" : "(start.subtract(end).getNormSq() - tolerance) <= 0.0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",

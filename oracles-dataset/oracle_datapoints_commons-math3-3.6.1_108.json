@@ -1,6 +1,6 @@
 [ {
   "id" : 21850,
-  "oracle" : ";",
+  "oracle" : "values == null || weights == null || values.length != weights.length || weights.anyMatch(jdVar -> jdVar < 0) || weights.allMatch(jdVar -> jdVar == 0);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat.descriptive",
@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 21856,
-  "oracle" : ";",
+  "oracle" : "values == null || weights == null || values.length != weights.length || weights.anyMatch(jdVar -> jdVar < 0) || weights.allMatch(jdVar -> jdVar == 0);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat.descriptive",
@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 21883,
-  "oracle" : ";",
+  "oracle" : "values == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat.descriptive.rank",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 21892,
-  "oracle" : ";",
+  "oracle" : "true;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat.descriptive.rank",
@@ -276,7 +276,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 21932,
-  "oracle" : ";",
+  "oracle" : "quantile <= 0 || quantile > 100;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat.descriptive.rank",
