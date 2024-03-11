@@ -1,6 +1,6 @@
 [ {
   "id" : 17636,
-  "oracle" : ";",
+  "oracle" : "startRow >= 0;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.linear",
@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 17648,
-  "oracle" : ";",
+  "oracle" : "a.getColumnDimension() != a.getRowDimension();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.linear",
