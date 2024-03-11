@@ -299,7 +299,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 16630,
-  "oracle" : ";",
+  "oracle" : "columnDimension > 1 && columnDimension != null;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.linear",
