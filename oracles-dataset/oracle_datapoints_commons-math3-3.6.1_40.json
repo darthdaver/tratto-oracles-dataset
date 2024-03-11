@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 15062,
-  "oracle" : ";",
+  "oracle" : "(n > 25) &&  (20 < k) && (k <= n - 2);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.util",
