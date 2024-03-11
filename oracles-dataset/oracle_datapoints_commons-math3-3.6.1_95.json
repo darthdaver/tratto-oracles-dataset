@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20538,
-  "oracle" : ";",
+  "oracle" : "y0.length != equations.getDimension() || y.length != equations.getDimension();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ode",
@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20541,
-  "oracle" : ";",
+  "oracle" : "y0.length != equations.getDimension() || y.length != equations.getDimension();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ode",
@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20556,
-  "oracle" : ";",
+  "oracle" : "tiesTrace.stream().allMatch(jdVar -> jdVar < data.length);",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat.ranking",
@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20603,
-  "oracle" : ";",
+  "oracle" : "values != null && (begin + length) < values.length;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20621,
-  "oracle" : ";",
+  "oracle" : "values != null;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat",

@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 18954,
-  "oracle" : ";",
+  "oracle" : "this.getTargetSize() != this.getWeight().getColumnDimension() || this.getTargetSize() != this.getStartPoint().length;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.optim.nonlinear.scalar.noderiv",
@@ -207,7 +207,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 19029,
-  "oracle" : ";",
+  "oracle" : "size >= 0;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.optim.nonlinear.scalar.noderiv",
