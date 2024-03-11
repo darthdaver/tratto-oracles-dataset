@@ -207,7 +207,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 17609,
-  "oracle" : ";",
+  "oracle" : "(row == column) && (!org.apache.commons.math3.util.Precision.equals(0.0, increment, 1));",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.linear",
