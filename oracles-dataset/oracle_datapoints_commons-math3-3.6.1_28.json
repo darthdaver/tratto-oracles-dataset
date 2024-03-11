@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 13870,
-  "oracle" : ";",
+  "oracle" : "MathArrays.checkOrder(x, MathArrays.OrderDirection.INCREASING, true, true) != true || MathArrays.checkOrder(y, MathArrays.OrderDirection.INCREASING, true, true) != true || MathArrays.checkOrder(z, MathArrays.OrderDirection.INCREASING, true, true) != true;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.analysis.interpolation",
