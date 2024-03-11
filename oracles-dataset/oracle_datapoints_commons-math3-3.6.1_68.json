@@ -1,6 +1,6 @@
 [ {
   "id" : 17837,
-  "oracle" : ";",
+  "oracle" : "(this.getRowDimension() != v.length) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.linear",
