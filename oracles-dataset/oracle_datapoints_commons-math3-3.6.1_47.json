@@ -1,6 +1,6 @@
 [ {
   "id" : 15740,
-  "oracle" : ";",
+  "oracle" : "(lower.length != upper.length) || (lower.length != scale.length);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.optimization.direct",
