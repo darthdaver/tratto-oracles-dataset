@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 18790,
-  "oracle" : ";",
+  "oracle" : "this.getLowerBound() != null || this.getUpperBound() != null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.optim.nonlinear.scalar.gradient",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 18816,
-  "oracle" : ";",
+  "oracle" : "observations.length != weights.length;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.optim.nonlinear.scalar",

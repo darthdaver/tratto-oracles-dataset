@@ -1,6 +1,6 @@
 [ {
   "id" : 20437,
-  "oracle" : ";",
+  "oracle" : "true? methodResultID >= -1 && methodResultID <= 1 : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ode",
@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20443,
-  "oracle" : ";",
+  "oracle" : "y.length > this.getDimension() || yDot.length > this.getDimension();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ode",
@@ -46,7 +46,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20451,
-  "oracle" : ";",
+  "oracle" : "equationData.length != this.getDimension();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.ode",
