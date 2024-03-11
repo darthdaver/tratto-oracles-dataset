@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 14172,
-  "oracle" : ";",
+  "oracle" : "(unscaled != org.apache.commons.math3.util.FastMath.floor(unscaled)) == false;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.util",
