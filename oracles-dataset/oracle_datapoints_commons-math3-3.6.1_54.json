@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 16487,
-  "oracle" : ";",
+  "oracle" : "(startRow < 0 || startRow >= m.getRowDimension() || endRow < 0 || endRow >= m.getRowDimension() || startColumn < 0 || startColumn >= m.getColumnDimension() || endColumn < 0 || endColumn >= m.getColumnDimension());",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.linear",
