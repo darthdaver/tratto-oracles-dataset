@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 16492,
-  "oracle" : ";",
+  "oracle" : "(selectedColumns == null || selectedColumns.length == 0 || selectedRows == null || selectedRows.length == 0);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.linear",
