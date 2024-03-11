@@ -1,6 +1,6 @@
 [ {
   "id" : 16535,
-  "oracle" : ";",
+  "oracle" : "this.inverse(matrix, 0) == true;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.linear",
