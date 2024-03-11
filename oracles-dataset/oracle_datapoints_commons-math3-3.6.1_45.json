@@ -1,6 +1,6 @@
 [ {
   "id" : 15541,
-  "oracle" : ";",
+  "oracle" : "numberOfInterpolationPoints > 0;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.optimization.direct",
