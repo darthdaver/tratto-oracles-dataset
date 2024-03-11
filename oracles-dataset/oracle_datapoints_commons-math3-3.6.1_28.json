@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 13868,
-  "oracle" : ";",
+  "oracle" : "x.length == 0 || y.length == 0 || z.length == 0 || f.length == 0;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.analysis.interpolation",
