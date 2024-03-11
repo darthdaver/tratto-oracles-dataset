@@ -230,7 +230,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 17704,
-  "oracle" : ";",
+  "oracle" : "(this.getRowDimension() != m.getRowDimension()) || (this.getColumnDimension() != m.getColumnDimension());",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.linear",
