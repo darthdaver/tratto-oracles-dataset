@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 15590,
-  "oracle" : ";",
+  "oracle" : "true ? this.optimizeInternal(maxEval, f, optData) : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.optimization.direct",
