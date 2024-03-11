@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 16389,
-  "oracle" : ";",
+  "oracle" : "true ? org.apache.commons.math3.linear.RealMatrixFormat(org.apache.commons.math3.util.CompositeFormat.getDefaultNumberFormat(locale) : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.linear",
