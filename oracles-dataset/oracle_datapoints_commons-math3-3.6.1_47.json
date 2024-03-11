@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 15750,
-  "oracle" : ";",
+  "oracle" : "goalType == org.apache.commons.math3.optim.nonlinear.scalar.GoalType.MAXIMIZE || goalType == org.apache.commons.math3.optim.nonlinear.scalar.GoalType.MINIMIZE;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.optimization.direct",
@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 15761,
-  "oracle" : ";",
+  "oracle" : "this.getEvaluations() > this.getMaxEvaluations();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.optimization.direct",
