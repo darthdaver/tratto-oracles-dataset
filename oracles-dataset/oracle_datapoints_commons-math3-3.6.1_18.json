@@ -299,7 +299,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 12919,
-  "oracle" : ";",
+  "oracle" : "true ? ((start < mid) && (mid < end)) : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.analysis.solvers",
