@@ -32559,7 +32559,7 @@
     {
         "id": 4267,
         "oracle": "true ? methodResultID.isStrict() && (methodResultID.isAutoCreationEnabled() == false) : true;",
-        "oracleType": "NORMAL-POST",
+        "oracleType": "NORMAL_POST",
         "projectName": "gs-core-1.3",
         "packageName": "org.graphstream.graph.implementations",
         "className": "DefaultGraph",
