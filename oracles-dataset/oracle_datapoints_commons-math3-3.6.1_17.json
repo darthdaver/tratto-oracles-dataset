@@ -1,6 +1,6 @@
 [ {
   "id" : 12739,
-  "oracle" : ";",
+  "oracle" : "org.apache.commons.math3.util.MathArrays.checkOrder(points, org.apache.commons.math3.util.MathArrays.OrderDirection.INCREASING, true, true);",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.analysis.integration.gauss",
@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 12756,
-  "oracle" : ";",
+  "oracle" : "this.getIterations() > this.getMaximalIterationCount();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.analysis.integration",
@@ -161,7 +161,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 12761,
-  "oracle" : ";",
+  "oracle" : "this.getIterations() > this.getMaximalIterationCount();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.analysis.integration",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 12768,
-  "oracle" : ";",
+  "oracle" : "this.getIterations() > this.getMaximalIterationCount();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.analysis.integration",
@@ -253,7 +253,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 12789,
-  "oracle" : ";",
+  "oracle" : "this.getIterations() > this.getMaximalIterationCount();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.analysis.integration",
