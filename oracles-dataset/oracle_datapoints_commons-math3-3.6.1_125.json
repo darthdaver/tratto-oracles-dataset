@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 23590,
-  "oracle" : "(start.subtract(end).getNormSq() - tolerance) <= 0.0;",
+  "oracle" : "start.subtract(end).getNormSq() <= tolerance;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.geometry.euclidean.threed",

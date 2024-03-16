@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20603,
-  "oracle" : "values != null && (begin + length) < values.length;",
+  "oracle" : "values != null && values.length > begin + length;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat",

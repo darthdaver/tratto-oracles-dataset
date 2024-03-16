@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 10322,
-  "oracle" : "true ? methodResultID.length <= seq.length;",
+  "oracle" : "true ? methodResultID.length <= seq.length : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "plume-lib-1.1.0",
   "packageName" : "plume",

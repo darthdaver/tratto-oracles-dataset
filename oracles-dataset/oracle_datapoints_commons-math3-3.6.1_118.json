@@ -115,7 +115,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 22917,
-  "oracle" : "this.chromosomes.size() > this.getPopulationLimit();",
+  "oracle" : "this.getChromosomeList().size() > this.getPopulationLimit();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.genetics",
@@ -138,7 +138,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 22919,
-  "oracle" : "this.getChromosomeList().size() + chromosomeColl.size() > this.getPopulationLimit();",
+  "oracle" : "chromosomeColl.size() > this.getPopulationLimit() - this.getChromosomeList().size();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.genetics",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 22928,
-  "oracle" : "[populationLimit < this.getChromosomeList().size();",
+  "oracle" : "populationLimit < this.getChromosomeList().size();",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.genetics",

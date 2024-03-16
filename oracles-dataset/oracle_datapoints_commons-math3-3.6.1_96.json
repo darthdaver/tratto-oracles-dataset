@@ -1,6 +1,6 @@
 [ {
   "id" : 20650,
-  "oracle" : "values != null && (begin + length) < values.length;",
+  "oracle" : "values != null && values.length > begin + length;",
   "oracleType" : "PRE",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat",
@@ -23,7 +23,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20655,
-  "oracle" : "begin >= array.length || (begin + length) >= array.length || array == null || p <= 0 || p > 100;",
+  "oracle" : "begin >= values.length || values.length <= begin + length || values == null || p <= 0 || p > 100;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat",
@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20675,
-  "oracle" : "array == null;",
+  "oracle" : "sample == null;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat",
@@ -184,7 +184,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 20716,
-  "oracle" : "lower >= upper || confidenceLevel <= 0 and confidenceLevel >= 1;",
+  "oracle" : "lowerBound >= upperBound || confidenceLevel <= 0 && confidenceLevel >= 1;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "commons-math3-3.6.1",
   "packageName" : "org.apache.commons.math3.stat.interval",

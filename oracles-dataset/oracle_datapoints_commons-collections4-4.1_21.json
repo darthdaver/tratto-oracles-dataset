@@ -92,7 +92,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 6495,
-  "oracle" : "map == null ? methodResultID == null : methodResultID instanceof Short;",
+  "oracle" : "map == null ? methodResultID == null : true;",
   "oracleType" : "NORMAL_POST",
   "projectName" : "commons-collections4-4.1",
   "packageName" : "org.apache.commons.collections4",

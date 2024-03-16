@@ -253,7 +253,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 4077,
-  "oracle" : "index < 0 || index > (this.getGraph().getNodeCount() - 1);",
+  "oracle" : "index < 0 || index > this.getGraph().getNodeCount() - 1;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "gs-core-1.3",
   "packageName" : "org.graphstream.graph",
@@ -276,7 +276,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 4080,
-  "oracle" : "index >= 0 && index <= (this.getGraph().getNodeCount() - 1);",
+  "oracle" : "index >= 0 && index <= this.getGraph().getNodeCount() - 1;",
   "oracleType" : "PRE",
   "projectName" : "gs-core-1.3",
   "packageName" : "org.graphstream.graph",
@@ -299,7 +299,7 @@
   "tokensOracleVariablesNonPrivateNonStaticAttributes" : [ ]
 }, {
   "id" : 4082,
-  "oracle" : "index < 0 || index > (this.getGraph().getNodeCount() - 1);",
+  "oracle" : "index < 0 || index > this.getGraph().getNodeCount() - 1;",
   "oracleType" : "EXCEPT_POST",
   "projectName" : "gs-core-1.3",
   "packageName" : "org.graphstream.graph",
