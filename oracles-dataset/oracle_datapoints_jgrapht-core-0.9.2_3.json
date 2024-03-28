@@ -914,379 +914,379 @@
                 "addVertices",
                 "org.jgrapht.experimental",
                 "RandomGraphHelper",
-                "public static Object[] addVertices(Graph target, VertexFactory vertexFactory, int numVertices)"
+                "/**\n * .\n *\n * @param target\n * @param vertexFactory\n * @param numVertices\n *\n * @return vertices\n */\n@SuppressWarnings(\"unchecked\")\npublic static Object[] addVertices(Graph target, VertexFactory vertexFactory, int numVertices) {\n    Object[] vertices = new Object[numVertices];\n    for (int i = 0; i < numVertices; ++i) {\n        vertices[i] = vertexFactory.createVertex();\n        target.addVertex(vertices[i]);\n    }\n    return vertices;\n}"
             ],
             [
                 "isEmpty",
                 "org.jgrapht.experimental",
                 "GraphTests",
-                "public static <V, E> boolean isEmpty(Graph<V, E> g)"
+                "public static <V, E> boolean isEmpty(Graph<V, E> g) {\n    return g.edgeSet().isEmpty();\n}"
             ],
             [
                 "isComplete",
                 "org.jgrapht.experimental",
                 "GraphTests",
-                "public static <V, E> boolean isComplete(Graph<V, E> g)"
+                "public static <V, E> boolean isComplete(Graph<V, E> g) {\n    int n = g.vertexSet().size();\n    return g.edgeSet().size() == (n * (n - 1) / 2);\n}"
             ],
             [
                 "isConnected",
                 "org.jgrapht.experimental",
                 "GraphTests",
-                "public static <V, E> boolean isConnected(Graph<V, E> g)"
+                "public static <V, E> boolean isConnected(Graph<V, E> g) {\n    int numVertices = g.vertexSet().size();\n    int numEdges = g.edgeSet().size();\n    if (numEdges < (numVertices - 1)) {\n        return false;\n    }\n    if ((numVertices < 2) || (numEdges > ((numVertices - 1) * (numVertices - 2) / 2))) {\n        return true;\n    }\n    Set<V> known = new HashSet<V>();\n    LinkedList<V> queue = new LinkedList<V>();\n    V v = g.vertexSet().iterator().next();\n    // start with node 1\n    queue.add(v);\n    known.add(v);\n    while (!queue.isEmpty()) {\n        v = queue.removeFirst();\n        for (Iterator<V> it = Graphs.neighborListOf(g, v).iterator(); it.hasNext(); ) {\n            v = it.next();\n            if (!known.contains(v)) {\n                known.add(v);\n                queue.add(v);\n            }\n        }\n    }\n    return known.size() == numVertices;\n}"
             ],
             [
                 "isTree",
                 "org.jgrapht.experimental",
                 "GraphTests",
-                "public static <V, E> boolean isTree(Graph<V, E> g)"
+                "public static <V, E> boolean isTree(Graph<V, E> g) {\n    return isConnected(g) && (g.edgeSet().size() == (g.vertexSet().size() - 1));\n}"
             ],
             [
                 "isBipartite",
                 "org.jgrapht.experimental",
                 "GraphTests",
-                "public static <V, E> boolean isBipartite(Graph<V, E> g)"
+                "public static <V, E> boolean isBipartite(Graph<V, E> g) {\n    if ((4 * g.edgeSet().size()) > (g.vertexSet().size() * g.vertexSet().size())) {\n        return false;\n    }\n    if (isEmpty(g)) {\n        return true;\n    }\n    Set<V> unknown = new HashSet<V>(g.vertexSet());\n    LinkedList<V> queue = new LinkedList<V>();\n    V v = unknown.iterator().next();\n    Set<V> odd = new HashSet<V>();\n    queue.add(v);\n    while (!unknown.isEmpty()) {\n        if (queue.isEmpty()) {\n            queue.add(unknown.iterator().next());\n        }\n        v = queue.removeFirst();\n        unknown.remove(v);\n        for (Iterator<V> it = Graphs.neighborListOf(g, v).iterator(); it.hasNext(); ) {\n            V n = it.next();\n            if (unknown.contains(n)) {\n                queue.add(n);\n                if (!odd.contains(v)) {\n                    odd.add(n);\n                }\n            } else if (!(odd.contains(v) ^ odd.contains(n))) {\n                return false;\n            }\n        }\n    }\n    return true;\n}"
             ],
             [
                 "union",
                 "org.jgrapht.util",
                 "FibonacciHeap",
-                "public static <T> FibonacciHeap<T> union(FibonacciHeap<T> h1, FibonacciHeap<T> h2)"
+                "// size\n/**\n * Joins two Fibonacci heaps into a new one. No heap consolidation is\n * performed at this time. The two root lists are simply joined together.\n *\n * <p>Running time: O(1) actual</p>\n *\n * @param h1 first heap\n * @param h2 second heap\n *\n * @return new heap containing h1 and h2\n */\npublic static <T> FibonacciHeap<T> union(FibonacciHeap<T> h1, FibonacciHeap<T> h2) {\n    FibonacciHeap<T> h = new FibonacciHeap<T>();\n    if ((h1 != null) && (h2 != null)) {\n        h.minNode = h1.minNode;\n        if (h.minNode != null) {\n            if (h2.minNode != null) {\n                h.minNode.right.left = h2.minNode.left;\n                h2.minNode.left.right = h.minNode.right;\n                h.minNode.right = h2.minNode;\n                h2.minNode.left = h.minNode;\n                if (h2.minNode.key < h1.minNode.key) {\n                    h.minNode = h2.minNode;\n                }\n            }\n        } else {\n            h.minNode = h2.minNode;\n        }\n        h.nNodes = h1.nNodes + h2.nNodes;\n    }\n    return h;\n}"
             ],
             [
                 "uncheckedCast",
                 "org.jgrapht.util",
                 "TypeUtil",
-                "public static <T> T uncheckedCast(Object o, TypeUtil<T> typeDecl)"
+                "/**\n * Casts an object to a type.\n *\n * @param o object to be cast\n * @param typeDecl conveys the target type information; the actual value is\n * unused and can be null since this is all just stupid compiler tricks\n *\n * @return the result of the cast\n */\n@SuppressWarnings(\"unchecked\")\npublic static <T> T uncheckedCast(Object o, TypeUtil<T> typeDecl) {\n    return (T) o;\n}"
             ],
             [
                 "factorial",
                 "org.jgrapht.util",
                 "MathUtil",
-                "public static long factorial(int N)"
+                "public static long factorial(int N) {\n    long multi = 1;\n    for (int i = 1; i <= N; i++) {\n        multi = multi * i;\n    }\n    return multi;\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleGraph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends SimpleGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends SimpleGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedGraphBuilder<V, E, SimpleGraph<V, E>>(new SimpleGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleGraph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends SimpleGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends SimpleGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedGraphBuilder<V, E, SimpleGraph<V, E>>(new SimpleGraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "WeightedPseudograph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedWeightedGraphBuilder<V, E, WeightedPseudograph<V, E>>(new WeightedPseudograph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "WeightedPseudograph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedWeightedGraphBuilder<V, E, WeightedPseudograph<V, E>>(new WeightedPseudograph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "Pseudograph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Pseudograph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Pseudograph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedGraphBuilder<V, E, Pseudograph<V, E>>(new Pseudograph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "Pseudograph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Pseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Pseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedGraphBuilder<V, E, Pseudograph<V, E>>(new Pseudograph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedMultigraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedGraphBuilder<V, E, DirectedMultigraph<V, E>>(new DirectedMultigraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedMultigraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedGraphBuilder<V, E, DirectedMultigraph<V, E>>(new DirectedMultigraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedWeightedPseudograph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedWeightedGraphBuilder<V, E, DirectedWeightedPseudograph<V, E>>(new DirectedWeightedPseudograph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedWeightedPseudograph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedWeightedGraphBuilder<V, E, DirectedWeightedPseudograph<V, E>>(new DirectedWeightedPseudograph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "Multigraph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Multigraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Multigraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedGraphBuilder<V, E, Multigraph<V, E>>(new Multigraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "Multigraph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Multigraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Multigraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedGraphBuilder<V, E, Multigraph<V, E>>(new Multigraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DefaultDirectedGraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DefaultDirectedGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DefaultDirectedGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedGraphBuilder<V, E, DefaultDirectedGraph<V, E>>(new DefaultDirectedGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DefaultDirectedGraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DefaultDirectedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DefaultDirectedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedGraphBuilder<V, E, DefaultDirectedGraph<V, E>>(new DefaultDirectedGraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DefaultDirectedWeightedGraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DefaultDirectedWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DefaultDirectedWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedWeightedGraphBuilder<V, E, DefaultDirectedWeightedGraph<V, E>>(new DefaultDirectedWeightedGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DefaultDirectedWeightedGraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DefaultDirectedWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DefaultDirectedWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedWeightedGraphBuilder<V, E, DefaultDirectedWeightedGraph<V, E>>(new DefaultDirectedWeightedGraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedPseudograph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedGraphBuilder<V, E, DirectedPseudograph<V, E>>(new DirectedPseudograph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedPseudograph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedGraphBuilder<V, E, DirectedPseudograph<V, E>>(new DirectedPseudograph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleWeightedGraph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends SimpleWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends SimpleWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedWeightedGraphBuilder<V, E, SimpleWeightedGraph<V, E>>(new SimpleWeightedGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleWeightedGraph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends SimpleWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends SimpleWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedWeightedGraphBuilder<V, E, SimpleWeightedGraph<V, E>>(new SimpleWeightedGraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleDirectedWeightedGraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends SimpleDirectedWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends SimpleDirectedWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedWeightedGraphBuilder<V, E, SimpleDirectedWeightedGraph<V, E>>(new SimpleDirectedWeightedGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleDirectedWeightedGraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends SimpleDirectedWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends SimpleDirectedWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedWeightedGraphBuilder<V, E, SimpleDirectedWeightedGraph<V, E>>(new SimpleDirectedWeightedGraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "WeightedMultigraph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedWeightedGraphBuilder<V, E, WeightedMultigraph<V, E>>(new WeightedMultigraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "WeightedMultigraph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedWeightedGraphBuilder<V, E, WeightedMultigraph<V, E>>(new WeightedMultigraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedWeightedMultigraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedWeightedGraphBuilder<V, E, DirectedWeightedMultigraph<V, E>>(new DirectedWeightedMultigraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedWeightedMultigraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedWeightedGraphBuilder<V, E, DirectedWeightedMultigraph<V, E>>(new DirectedWeightedMultigraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleDirectedGraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends SimpleDirectedGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends SimpleDirectedGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedGraphBuilder<V, E, SimpleDirectedGraph<V, E>>(new SimpleDirectedGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleDirectedGraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends SimpleDirectedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends SimpleDirectedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedGraphBuilder<V, E, SimpleDirectedGraph<V, E>>(new SimpleDirectedGraph<V, E>(ef));\n}"
             ],
             [
                 "addEdge",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> E addEdge(Graph<V, E> g, V sourceVertex, V targetVertex, double weight)"
+                "/**\n * Creates a new edge and adds it to the specified graph similarly to the\n * {@link Graph#addEdge(Object, Object)} method.\n *\n * @param g the graph for which the edge to be added.\n * @param sourceVertex source vertex of the edge.\n * @param targetVertex target vertex of the edge.\n * @param weight weight of the edge.\n *\n * @return The newly created edge if added to the graph, otherwise <code>\n * null</code>.\n *\n * @see Graph#addEdge(Object, Object)\n */\npublic static <V, E> E addEdge(Graph<V, E> g, V sourceVertex, V targetVertex, double weight) {\n    EdgeFactory<V, E> ef = g.getEdgeFactory();\n    E e = ef.createEdge(sourceVertex, targetVertex);\n    // we first create the edge and set the weight to make sure that\n    // listeners will see the correct weight upon addEdge.\n    assert (g instanceof WeightedGraph<?, ?>) : g.getClass();\n    ((WeightedGraph<V, E>) g).setEdgeWeight(e, weight);\n    return g.addEdge(sourceVertex, targetVertex, e) ? e : null;\n}"
             ],
             [
                 "addEdgeWithVertices",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> E addEdgeWithVertices(Graph<V, E> g, V sourceVertex, V targetVertex)"
+                "/**\n * Adds the specified source and target vertices to the graph, if not\n * already included, and creates a new edge and adds it to the specified\n * graph similarly to the {@link Graph#addEdge(Object, Object)} method.\n *\n * @param g the graph for which the specified edge to be added.\n * @param sourceVertex source vertex of the edge.\n * @param targetVertex target vertex of the edge.\n *\n * @return The newly created edge if added to the graph, otherwise <code>\n * null</code>.\n */\npublic static <V, E> E addEdgeWithVertices(Graph<V, E> g, V sourceVertex, V targetVertex) {\n    g.addVertex(sourceVertex);\n    g.addVertex(targetVertex);\n    return g.addEdge(sourceVertex, targetVertex);\n}"
             ],
             [
                 "addEdgeWithVertices",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> boolean addEdgeWithVertices(Graph<V, E> targetGraph, Graph<V, E> sourceGraph, E edge)"
+                "/**\n * Adds the specified edge to the graph, including its vertices if not\n * already included.\n *\n * @param targetGraph the graph for which the specified edge to be added.\n * @param sourceGraph the graph in which the specified edge is already\n * present\n * @param edge edge to add\n *\n * @return <tt>true</tt> if the target graph did not already contain the\n * specified edge.\n */\npublic static <V, E> boolean addEdgeWithVertices(Graph<V, E> targetGraph, Graph<V, E> sourceGraph, E edge) {\n    V sourceVertex = sourceGraph.getEdgeSource(edge);\n    V targetVertex = sourceGraph.getEdgeTarget(edge);\n    targetGraph.addVertex(sourceVertex);\n    targetGraph.addVertex(targetVertex);\n    return targetGraph.addEdge(sourceVertex, targetVertex, edge);\n}"
             ],
             [
                 "addEdgeWithVertices",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> E addEdgeWithVertices(Graph<V, E> g, V sourceVertex, V targetVertex, double weight)"
+                "/**\n * Adds the specified source and target vertices to the graph, if not\n * already included, and creates a new weighted edge and adds it to the\n * specified graph similarly to the {@link Graph#addEdge(Object, Object)}\n * method.\n *\n * @param g the graph for which the specified edge to be added.\n * @param sourceVertex source vertex of the edge.\n * @param targetVertex target vertex of the edge.\n * @param weight weight of the edge.\n *\n * @return The newly created edge if added to the graph, otherwise <code>\n * null</code>.\n */\npublic static <V, E> E addEdgeWithVertices(Graph<V, E> g, V sourceVertex, V targetVertex, double weight) {\n    g.addVertex(sourceVertex);\n    g.addVertex(targetVertex);\n    return addEdge(g, sourceVertex, targetVertex, weight);\n}"
             ],
             [
                 "addGraph",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> boolean addGraph(Graph<? super V, ? super E> destination, Graph<V, E> source)"
+                "/**\n * Adds all the vertices and all the edges of the specified source graph to\n * the specified destination graph. First all vertices of the source graph\n * are added to the destination graph. Then every edge of the source graph\n * is added to the destination graph. This method returns <code>true</code>\n * if the destination graph has been modified as a result of this operation,\n * otherwise it returns <code>false</code>.\n *\n * <p>The behavior of this operation is undefined if any of the specified\n * graphs is modified while operation is in progress.</p>\n *\n * @param destination the graph to which vertices and edges are added.\n * @param source the graph used as source for vertices and edges to add.\n *\n * @return <code>true</code> if and only if the destination graph has been\n * changed as a result of this operation.\n */\npublic static <V, E> boolean addGraph(Graph<? super V, ? super E> destination, Graph<V, E> source) {\n    boolean modified = addAllVertices(destination, source.vertexSet());\n    modified |= addAllEdges(destination, source, source.edgeSet());\n    return modified;\n}"
             ],
             [
                 "addAllEdges",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> boolean addAllEdges(Graph<? super V, ? super E> destination, Graph<V, E> source, Collection<? extends E> edges)"
+                "/**\n * Adds a subset of the edges of the specified source graph to the specified\n * destination graph. The behavior of this operation is undefined if either\n * of the graphs is modified while the operation is in progress. {@link\n * #addEdgeWithVertices} is used for the transfer, so source vertexes will\n * be added automatically to the target graph.\n *\n * @param destination the graph to which edges are to be added\n * @param source the graph used as a source for edges to add\n * @param edges the edges to be added\n *\n * @return <tt>true</tt> if this graph changed as a result of the call\n */\npublic static <V, E> boolean addAllEdges(Graph<? super V, ? super E> destination, Graph<V, E> source, Collection<? extends E> edges) {\n    boolean modified = false;\n    for (E e : edges) {\n        V s = source.getEdgeSource(e);\n        V t = source.getEdgeTarget(e);\n        destination.addVertex(s);\n        destination.addVertex(t);\n        modified |= destination.addEdge(s, t, e);\n    }\n    return modified;\n}"
             ],
             [
                 "addAllVertices",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> boolean addAllVertices(Graph<? super V, ? super E> destination, Collection<? extends V> vertices)"
+                "/**\n * Adds all of the specified vertices to the destination graph. The behavior\n * of this operation is undefined if the specified vertex collection is\n * modified while the operation is in progress. This method will invoke the\n * {@link Graph#addVertex(Object)} method.\n *\n * @param destination the graph to which edges are to be added\n * @param vertices the vertices to be added to the graph.\n *\n * @return <tt>true</tt> if graph changed as a result of the call\n *\n * @throws NullPointerException if the specified vertices contains one or\n * more null vertices, or if the specified vertex collection is <tt>\n * null</tt>.\n *\n * @see Graph#addVertex(Object)\n */\npublic static <V, E> boolean addAllVertices(Graph<? super V, ? super E> destination, Collection<? extends V> vertices) {\n    boolean modified = false;\n    for (V v : vertices) {\n        modified |= destination.addVertex(v);\n    }\n    return modified;\n}"
             ],
             [
                 "neighborListOf",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> List<V> neighborListOf(Graph<V, E> g, V vertex)"
+                "/**\n * Returns a list of vertices that are the neighbors of a specified vertex.\n * If the graph is a multigraph vertices may appear more than once in the\n * returned list.\n *\n * @param g the graph to look for neighbors in.\n * @param vertex the vertex to get the neighbors of.\n *\n * @return a list of the vertices that are the neighbors of the specified\n * vertex.\n */\npublic static <V, E> List<V> neighborListOf(Graph<V, E> g, V vertex) {\n    List<V> neighbors = new ArrayList<V>();\n    for (E e : g.edgesOf(vertex)) {\n        neighbors.add(getOppositeVertex(g, e, vertex));\n    }\n    return neighbors;\n}"
             ],
             [
                 "predecessorListOf",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> List<V> predecessorListOf(DirectedGraph<V, E> g, V vertex)"
+                "/**\n * Returns a list of vertices that are the direct predecessors of a\n * specified vertex. If the graph is a multigraph, vertices may appear more\n * than once in the returned list.\n *\n * @param g the graph to look for predecessors in.\n * @param vertex the vertex to get the predecessors of.\n *\n * @return a list of the vertices that are the direct predecessors of the\n * specified vertex.\n */\npublic static <V, E> List<V> predecessorListOf(DirectedGraph<V, E> g, V vertex) {\n    List<V> predecessors = new ArrayList<V>();\n    Set<? extends E> edges = g.incomingEdgesOf(vertex);\n    for (E e : edges) {\n        predecessors.add(getOppositeVertex(g, e, vertex));\n    }\n    return predecessors;\n}"
             ],
             [
                 "successorListOf",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> List<V> successorListOf(DirectedGraph<V, E> g, V vertex)"
+                "/**\n * Returns a list of vertices that are the direct successors of a specified\n * vertex. If the graph is a multigraph vertices may appear more than once\n * in the returned list.\n *\n * @param g the graph to look for successors in.\n * @param vertex the vertex to get the successors of.\n *\n * @return a list of the vertices that are the direct successors of the\n * specified vertex.\n */\npublic static <V, E> List<V> successorListOf(DirectedGraph<V, E> g, V vertex) {\n    List<V> successors = new ArrayList<V>();\n    Set<? extends E> edges = g.outgoingEdgesOf(vertex);\n    for (E e : edges) {\n        successors.add(getOppositeVertex(g, e, vertex));\n    }\n    return successors;\n}"
             ],
             [
                 "undirectedGraph",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> UndirectedGraph<V, E> undirectedGraph(Graph<V, E> g)"
+                "/**\n * Returns an undirected view of the specified graph. If the specified graph\n * is directed, returns an undirected view of it. If the specified graph is\n * already undirected, just returns it.\n *\n * @param g the graph for which an undirected view is to be returned.\n *\n * @return an undirected view of the specified graph, if it is directed, or\n * or the specified graph itself if it is already undirected.\n *\n * @throws IllegalArgumentException if the graph is neither DirectedGraph\n * nor UndirectedGraph.\n *\n * @see AsUndirectedGraph\n */\npublic static <V, E> UndirectedGraph<V, E> undirectedGraph(Graph<V, E> g) {\n    if (g instanceof DirectedGraph<?, ?>) {\n        return new AsUndirectedGraph<V, E>((DirectedGraph<V, E>) g);\n    } else if (g instanceof UndirectedGraph<?, ?>) {\n        return (UndirectedGraph<V, E>) g;\n    } else {\n        throw new IllegalArgumentException(\"Graph must be either DirectedGraph or UndirectedGraph\");\n    }\n}"
             ],
             [
                 "testIncidence",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> boolean testIncidence(Graph<V, E> g, E e, V v)"
+                "/**\n * Tests whether an edge is incident to a vertex.\n *\n * @param g graph containing e and v\n * @param e edge in g\n * @param v vertex in g\n *\n * @return true iff e is incident on v\n */\npublic static <V, E> boolean testIncidence(Graph<V, E> g, E e, V v) {\n    return (g.getEdgeSource(e).equals(v)) || (g.getEdgeTarget(e).equals(v));\n}"
             ],
             [
                 "getOppositeVertex",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> V getOppositeVertex(Graph<V, E> g, E e, V v)"
+                "/**\n * Gets the vertex opposite another vertex across an edge.\n *\n * @param g graph containing e and v\n * @param e edge in g\n * @param v vertex in g\n *\n * @return vertex opposite to v across e\n */\npublic static <V, E> V getOppositeVertex(Graph<V, E> g, E e, V v) {\n    V source = g.getEdgeSource(e);\n    V target = g.getEdgeTarget(e);\n    if (v.equals(source)) {\n        return target;\n    } else if (v.equals(target)) {\n        return source;\n    } else {\n        throw new IllegalArgumentException(\"no such vertex: \" + v.toString());\n    }\n}"
             ],
             [
                 "getPathVertexList",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> List<V> getPathVertexList(GraphPath<V, E> path)"
+                "/**\n * Gets the list of vertices visited by a path.\n *\n * @param path path of interest\n *\n * @return corresponding vertex list\n */\npublic static <V, E> List<V> getPathVertexList(GraphPath<V, E> path) {\n    Graph<V, E> g = path.getGraph();\n    List<V> list = new ArrayList<V>();\n    V v = path.getStartVertex();\n    list.add(v);\n    for (E e : path.getEdgeList()) {\n        v = getOppositeVertex(g, e, v);\n        list.add(v);\n    }\n    return list;\n}"
             ],
             [
                 "range",
                 "org.jgrapht.generate",
                 "SimpleWeightedGraphMatrixGenerator",
-                "public static int[] range(final int from, final int to)"
+                "///////////////////////////////////////////////////////////////////////////////////////////////\npublic static int[] range(final int from, final int to) {\n    int[] range = new int[to - from];\n    for (int i = from; i < to; ++i) {\n        range[i - from] = i;\n    }\n    return range;\n}"
             ],
             [
                 "createGraphSpecifics",
                 "org.jgrapht.traverse",
                 "CrossComponentIterator",
-                "static <V, E> Specifics<V, E> createGraphSpecifics(Graph<V, E> g)"
+                "// -------------------------------------------------------------------------\n/**\n * @param <V>\n * @param <E>\n * @param g\n *\n * @return TODO Document me\n */\nstatic <V, E> Specifics<V, E> createGraphSpecifics(Graph<V, E> g) {\n    if (g instanceof DirectedGraph<?, ?>) {\n        return new DirectedSpecifics<V, E>((DirectedGraph<V, E>) g);\n    } else {\n        return new UndirectedSpecifics<V, E>(g);\n    }\n}"
             ],
             [
                 "findGreedyChromaticNumber",
                 "org.jgrapht.alg",
                 "ChromaticNumber",
-                "public static <V, E> int findGreedyChromaticNumber(UndirectedGraph<V, E> g)"
+                "/**\n * Finds the number of colors required for a greedy coloring of the graph.\n *\n * @param g an undirected graph to find the chromatic number of\n *\n * @return integer the approximate chromatic number from the greedy\n * algorithm\n */\npublic static <V, E> int findGreedyChromaticNumber(UndirectedGraph<V, E> g) {\n    Map<Integer, Set<V>> coloredGroups = findGreedyColoredGroups(g);\n    return coloredGroups.keySet().size();\n}"
             ],
             [
                 "findGreedyColoredGroups",
                 "org.jgrapht.alg",
                 "ChromaticNumber",
-                "public static <V, E> Map<Integer, Set<V>> findGreedyColoredGroups(UndirectedGraph<V, E> g)"
+                "/**\n * Finds a greedy coloring of the graph.\n *\n * @param g an undirected graph for which to find the coloring\n */\npublic static <V, E> Map<Integer, Set<V>> findGreedyColoredGroups(UndirectedGraph<V, E> g) {\n    // A copy of the graph is made, so that elements of the graph may be\n    // removed to carry out the algorithm\n    UndirectedGraph<V, E> sg = new UndirectedSubgraph<V, E>(g, null, null);\n    // The Vertices will be sorted in decreasing order by degree, so that\n    // higher degree vertices have priority to be colored first\n    VertexDegreeComparator<V, E> comp = new VertexDegreeComparator<V, E>(sg);\n    List<V> sortedVertices = new LinkedList<V>(sg.vertexSet());\n    Collections.sort(sortedVertices, comp);\n    Collections.reverse(sortedVertices);\n    int color;\n    // create a map which will hold color as key and Set<V> as value\n    Map<Integer, Set<V>> coloredGroups = new HashMap<Integer, Set<V>>();\n    // We'll attempt to color each vertex with a single color each\n    // iteration, and these vertices will be removed from the graph at the\n    // end of each iteration\n    for (color = 0; sg.vertexSet().size() > 0; color++) {\n        // This set will contain vertices that are colored with the\n        // current color of this iteration\n        Set<V> currentColor = new HashSet<V>();\n        for (Iterator<V> iter = sortedVertices.iterator(); iter.hasNext(); ) {\n            V v = iter.next();\n            // Add new vertices to be colored as long as they are not\n            // adjacent with any other vertex that has already been colored\n            // with the current color\n            boolean flag = true;\n            for (Iterator<V> innerIter = currentColor.iterator(); innerIter.hasNext(); ) {\n                V temp = innerIter.next();\n                if (sg.containsEdge(temp, v)) {\n                    flag = false;\n                    break;\n                }\n            }\n            if (flag) {\n                currentColor.add(v);\n                iter.remove();\n            }\n        }\n        // Add all these vertices as a group for this color\n        coloredGroups.put(color, currentColor);\n        // Remove vertices from the graph and then repeat the process for\n        // the next iteration\n        sg.removeAllVertices(currentColor);\n    }\n    return coloredGroups;\n}"
             ],
             [
                 "findPathBetween",
                 "org.jgrapht.alg",
                 "BellmanFordShortestPath",
-                "public static <V, E> List<E> findPathBetween(Graph<V, E> graph, V startVertex, V endVertex)"
+                "/**\n * Convenience method to find the shortest path via a single static method\n * call. If you need a more advanced search (e.g. limited by hops, or\n * computation of the path length), use the constructor instead.\n *\n * @param graph the graph to be searched\n * @param startVertex the vertex at which the path should start\n * @param endVertex the vertex at which the path should end\n *\n * @return List of Edges, or null if no path exists\n */\npublic static <V, E> List<E> findPathBetween(Graph<V, E> graph, V startVertex, V endVertex) {\n    BellmanFordShortestPath<V, E> alg = new BellmanFordShortestPath<V, E>(graph, startVertex);\n    return alg.getPathEdgeList(endVertex);\n}"
             ],
             [
                 "findPathBetween",
                 "org.jgrapht.alg",
                 "DijkstraShortestPath",
-                "public static <V, E> List<E> findPathBetween(Graph<V, E> graph, V startVertex, V endVertex)"
+                "/**\n * Convenience method to find the shortest path via a single static method\n * call. If you need a more advanced search (e.g. limited by radius, or\n * computation of the path length), use the constructor instead.\n *\n * @param graph the graph to be searched\n * @param startVertex the vertex at which the path should start\n * @param endVertex the vertex at which the path should end\n *\n * @return List of Edges, or null if no path exists\n */\npublic static <V, E> List<E> findPathBetween(Graph<V, E> graph, V startVertex, V endVertex) {\n    DijkstraShortestPath<V, E> alg = new DijkstraShortestPath<V, E>(graph, startVertex, endVertex);\n    return alg.getPathEdgeList();\n}"
             ],
             [
                 "of",
                 "org.jgrapht.alg.util",
                 "Pair",
-                "public static <A, B> Pair<A, B> of(A a, B b)"
+                "/**\n * Creates new pair of elements pulling of the necessity to provide\n * corresponding types of the elements supplied\n *\n * @param a first element\n * @param b second element\n *\n * @return new pair\n */\npublic static <A, B> Pair<A, B> of(A a, B b) {\n    return new Pair<A, B>(a, b);\n}"
             ],
             [
                 "isEulerian",
                 "org.jgrapht.alg",
                 "EulerianCircuit",
-                "public static <V, E> boolean isEulerian(UndirectedGraph<V, E> g)"
+                "/**\n * This method will check whether the graph passed in is Eulerian or not.\n *\n * @param g The graph to be checked\n *\n * @return true for Eulerian and false for non-Eulerian\n */\npublic static <V, E> boolean isEulerian(UndirectedGraph<V, E> g) {\n    // If the graph is not connected, then no Eulerian circuit exists\n    if (!(new ConnectivityInspector<V, E>(g)).isGraphConnected()) {\n        return false;\n    }\n    // A graph is Eulerian if and only if all vertices have even degree\n    // So, this code will check for that\n    Iterator<V> iter = g.vertexSet().iterator();\n    while (iter.hasNext()) {\n        V v = iter.next();\n        if ((g.degreeOf(v) % 2) == 1) {\n            return false;\n        }\n    }\n    return true;\n}"
             ],
             [
                 "getEulerianCircuitVertices",
                 "org.jgrapht.alg",
                 "EulerianCircuit",
-                "public static <V, E> List<V> getEulerianCircuitVertices(UndirectedGraph<V, E> g)"
+                "/**\n * This method will return a list of vertices which represents the Eulerian\n * circuit of the graph.\n *\n * @param g The graph to find an Eulerian circuit\n *\n * @return null if no Eulerian circuit exists, or a list of vertices\n * representing the Eulerian circuit if one does exist\n */\npublic static <V, E> List<V> getEulerianCircuitVertices(UndirectedGraph<V, E> g) {\n    // If the graph is not Eulerian then just return a null since no\n    // Eulerian circuit exists\n    if (!isEulerian(g)) {\n        return null;\n    }\n    // The circuit will be represented by a linked list\n    List<V> path = new LinkedList<V>();\n    UndirectedGraph<V, E> sg = new UndirectedSubgraph<V, E>(g, null, null);\n    path.add(sg.vertexSet().iterator().next());\n    // Algorithm for finding an Eulerian circuit Basically this will find an\n    // arbitrary circuit, then it will find another arbitrary circuit until\n    // every edge has been traversed\n    while (sg.edgeSet().size() > 0) {\n        V v = null;\n        // Find a vertex which has an edge that hasn't been traversed yet,\n        // and keep its index position in the circuit list\n        int index = 0;\n        for (Iterator<V> iter = path.iterator(); iter.hasNext(); index++) {\n            v = iter.next();\n            if (sg.degreeOf(v) > 0) {\n                break;\n            }\n        }\n        // Finds an arbitrary circuit of the current vertex and\n        // appends this into the circuit list\n        while (sg.degreeOf(v) > 0) {\n            for (Iterator<V> iter = sg.vertexSet().iterator(); iter.hasNext(); ) {\n                V temp = iter.next();\n                if (sg.containsEdge(v, temp)) {\n                    path.add(index, temp);\n                    sg.removeEdge(v, temp);\n                    v = temp;\n                    break;\n                }\n            }\n        }\n    }\n    return path;\n}"
             ],
             [
                 "getApproximateOptimalForCompleteGraph",
                 "org.jgrapht.alg",
                 "HamiltonianCycle",
-                "public static <V, E> List<V> getApproximateOptimalForCompleteGraph(SimpleWeightedGraph<V, E> g)"
+                "/**\n * This method will return an approximate minimal traveling salesman tour\n * (hamiltonian cycle). This algorithm requires that the graph be complete\n * and the triangle inequality exists (if x,y,z are vertices then\n * d(x,y)+d(y,z) &lt; d(x,z) for all x,y,z) then this algorithm will\n * guarantee a hamiltonian cycle such that the total weight of the cycle is\n * less than or equal to double the total weight of the optimal hamiltonian\n * cycle. The optimal solution is NP-complete, so this is a decent\n * approximation that runs in polynomial time.\n *\n * @param <V>\n * @param <E>\n * @param g is the graph to find the optimal tour for.\n *\n * @return The optimal tour as a list of vertices.\n */\npublic static <V, E> List<V> getApproximateOptimalForCompleteGraph(SimpleWeightedGraph<V, E> g) {\n    List<V> vertices = new LinkedList<V>(g.vertexSet());\n    // If the graph is not complete then return null since this algorithm\n    // requires the graph be complete\n    if ((vertices.size() * (vertices.size() - 1) / 2) != g.edgeSet().size()) {\n        return null;\n    }\n    List<V> tour = new LinkedList<V>();\n    // Each iteration a new vertex will be added to the tour until all\n    // vertices have been added\n    while (tour.size() != g.vertexSet().size()) {\n        boolean firstEdge = true;\n        double minEdgeValue = 0;\n        int minVertexFound = 0;\n        int vertexConnectedTo = 0;\n        // A check will be made for the shortest edge to a vertex not within\n        // the tour and that new vertex will be added to the vertex\n        for (int i = 0; i < tour.size(); i++) {\n            V v = tour.get(i);\n            for (int j = 0; j < vertices.size(); j++) {\n                double weight = g.getEdgeWeight(g.getEdge(v, vertices.get(j)));\n                if (firstEdge || (weight < minEdgeValue)) {\n                    firstEdge = false;\n                    minEdgeValue = weight;\n                    minVertexFound = j;\n                    vertexConnectedTo = i;\n                }\n            }\n        }\n        tour.add(vertexConnectedTo, vertices.get(minVertexFound));\n        vertices.remove(minVertexFound);\n    }\n    return tour;\n}"
             ],
             [
                 "find2ApproximationCover",
                 "org.jgrapht.alg",
                 "VertexCovers",
-                "public static <V, E> Set<V> find2ApproximationCover(Graph<V, E> g)"
+                "/**\n * Finds a 2-approximation for a minimal vertex cover of the specified\n * graph. The algorithm promises a cover that is at most double the size of\n * a minimal cover. The algorithm takes O(|E|) time.\n *\n * <p>For more details see Jenny Walter, CMPU-240: Lecture notes for\n * Language Theory and Computation, Fall 2002, Vassar College, <a\n * href=\"http://www.cs.vassar.edu/~walter/cs241index/lectures/PDF/approx.pdf\">\n * http://www.cs.vassar.edu/~walter/cs241index/lectures/PDF/approx.pdf</a>.\n * </p>\n *\n * @param g the graph for which vertex cover approximation is to be found.\n *\n * @return a set of vertices which is a vertex cover for the specified\n * graph.\n */\npublic static <V, E> Set<V> find2ApproximationCover(Graph<V, E> g) {\n    // C <-- {}\n    Set<V> cover = new HashSet<V>();\n    // G'=(V',E') <-- G(V,E)\n    Subgraph<V, E, Graph<V, E>> sg = new Subgraph<V, E, Graph<V, E>>(g, null, null);\n    // while E' is non-empty\n    while (sg.edgeSet().size() > 0) {\n        // let (u,v) be an arbitrary edge of E'\n        E e = sg.edgeSet().iterator().next();\n        // C <-- C U {u,v}\n        V u = g.getEdgeSource(e);\n        V v = g.getEdgeTarget(e);\n        cover.add(u);\n        cover.add(v);\n        // remove from E' every edge incident on either u or v\n        sg.removeVertex(u);\n        sg.removeVertex(v);\n    }\n    // return C\n    return cover;\n}"
             ],
             [
                 "findGreedyCover",
                 "org.jgrapht.alg",
                 "VertexCovers",
-                "public static <V, E> Set<V> findGreedyCover(UndirectedGraph<V, E> g)"
+                "/**\n * Finds a greedy approximation for a minimal vertex cover of a specified\n * graph. At each iteration, the algorithm picks the vertex with the highest\n * degree and adds it to the cover, until all edges are covered.\n *\n * <p>The algorithm works on undirected graphs, but can also work on\n * directed graphs when their edge-directions are ignored. To ignore edge\n * directions you can use {@link org.jgrapht.Graphs#undirectedGraph(Graph)}\n * or {@link org.jgrapht.graph.AsUndirectedGraph}.</p>\n *\n * @param g the graph for which vertex cover approximation is to be found.\n *\n * @return a set of vertices which is a vertex cover for the specified\n * graph.\n */\npublic static <V, E> Set<V> findGreedyCover(UndirectedGraph<V, E> g) {\n    // C <-- {}\n    Set<V> cover = new HashSet<V>();\n    // G' <-- G\n    UndirectedGraph<V, E> sg = new UndirectedSubgraph<V, E>(g, null, null);\n    // compare vertices in descending order of degree\n    VertexDegreeComparator<V, E> comp = new VertexDegreeComparator<V, E>(sg);\n    // while G' != {}\n    while (sg.edgeSet().size() > 0) {\n        // v <-- vertex with maximum degree in G'\n        V v = Collections.max(sg.vertexSet(), comp);\n        // C <-- C U {v}\n        cover.add(v);\n        // remove from G' every edge incident on v, and v itself\n        sg.removeVertex(v);\n    }\n    return cover;\n}"
             ]
         ],
         "tokensProjectClassesNonPrivateStaticAttributes": [
@@ -1318,31 +1318,31 @@
                 "DEFAULT_EDGE_WEIGHT",
                 "org.jgrapht",
                 "WeightedGraph",
-                "public static double DEFAULT_EDGE_WEIGHT = 1.0;"
+                "/**\n * The default weight for an edge.\n */\npublic static double DEFAULT_EDGE_WEIGHT = 1.0;"
             ],
             [
                 "HUB_VERTEX",
                 "org.jgrapht.generate",
                 "WheelGraphGenerator",
-                "public static final String HUB_VERTEX = \"Hub Vertex\";"
+                "/**\n * Role for the hub vertex.\n */\npublic static final String HUB_VERTEX = \"Hub Vertex\";"
             ],
             [
                 "CORNER_VERTEX",
                 "org.jgrapht.generate",
                 "GridGraphGenerator",
-                "public static final String CORNER_VERTEX = \"Corner Vertex\";"
+                "/**\n * Role for the vertices at the corners.\n */\npublic static final String CORNER_VERTEX = \"Corner Vertex\";"
             ],
             [
                 "START_VERTEX",
                 "org.jgrapht.generate",
                 "LinearGraphGenerator",
-                "public static final String START_VERTEX = \"Start Vertex\";"
+                "/**\n * Role for the first vertex generated.\n */\npublic static final String START_VERTEX = \"Start Vertex\";"
             ],
             [
                 "END_VERTEX",
                 "org.jgrapht.generate",
                 "LinearGraphGenerator",
-                "public static final String END_VERTEX = \"End Vertex\";"
+                "/**\n * Role for the last vertex generated.\n */\npublic static final String END_VERTEX = \"End Vertex\";"
             ],
             [
                 "CENTER_VERTEX",
@@ -1354,67 +1354,67 @@
                 "SENTINEL",
                 "org.jgrapht.traverse",
                 "DepthFirstIterator",
-                "public static final Object SENTINEL = new Object();"
+                "/**\n * Sentinel object. Unfortunately, we can't use null, because ArrayDeque\n * won't accept those. And we don't want to rely on the caller to provide a\n * sentinel object for us. So we have to play typecasting games.\n */\npublic static final Object SENTINEL = new Object();"
             ],
             [
                 "BEFORE_EDGE_ADDED",
                 "org.jgrapht.event",
                 "GraphEdgeChangeEvent",
-                "public static final int BEFORE_EDGE_ADDED = 21;"
+                "/**\n * Before edge added event. This event is fired before an edge is added to a\n * graph.\n */\npublic static final int BEFORE_EDGE_ADDED = 21;"
             ],
             [
                 "BEFORE_EDGE_REMOVED",
                 "org.jgrapht.event",
                 "GraphEdgeChangeEvent",
-                "public static final int BEFORE_EDGE_REMOVED = 22;"
+                "/**\n * Before edge removed event. This event is fired before an edge is removed\n * from a graph.\n */\npublic static final int BEFORE_EDGE_REMOVED = 22;"
             ],
             [
                 "EDGE_ADDED",
                 "org.jgrapht.event",
                 "GraphEdgeChangeEvent",
-                "public static final int EDGE_ADDED = 23;"
+                "/**\n * Edge added event. This event is fired after an edge is added to a graph.\n */\npublic static final int EDGE_ADDED = 23;"
             ],
             [
                 "EDGE_REMOVED",
                 "org.jgrapht.event",
                 "GraphEdgeChangeEvent",
-                "public static final int EDGE_REMOVED = 24;"
+                "/**\n * Edge removed event. This event is fired after an edge is removed from a\n * graph.\n */\npublic static final int EDGE_REMOVED = 24;"
             ],
             [
                 "CONNECTED_COMPONENT_STARTED",
                 "org.jgrapht.event",
                 "ConnectedComponentTraversalEvent",
-                "public static final int CONNECTED_COMPONENT_STARTED = 31;"
+                "/**\n * Connected component traversal started event.\n */\npublic static final int CONNECTED_COMPONENT_STARTED = 31;"
             ],
             [
                 "CONNECTED_COMPONENT_FINISHED",
                 "org.jgrapht.event",
                 "ConnectedComponentTraversalEvent",
-                "public static final int CONNECTED_COMPONENT_FINISHED = 32;"
+                "/**\n * Connected component traversal finished event.\n */\npublic static final int CONNECTED_COMPONENT_FINISHED = 32;"
             ],
             [
                 "BEFORE_VERTEX_ADDED",
                 "org.jgrapht.event",
                 "GraphVertexChangeEvent",
-                "public static final int BEFORE_VERTEX_ADDED = 11;"
+                "/**\n * Before vertex added event. This event is fired before a vertex is added\n * to a graph.\n */\npublic static final int BEFORE_VERTEX_ADDED = 11;"
             ],
             [
                 "BEFORE_VERTEX_REMOVED",
                 "org.jgrapht.event",
                 "GraphVertexChangeEvent",
-                "public static final int BEFORE_VERTEX_REMOVED = 12;"
+                "/**\n * Before vertex removed event. This event is fired before a vertex is\n * removed from a graph.\n */\npublic static final int BEFORE_VERTEX_REMOVED = 12;"
             ],
             [
                 "VERTEX_ADDED",
                 "org.jgrapht.event",
                 "GraphVertexChangeEvent",
-                "public static final int VERTEX_ADDED = 13;"
+                "/**\n * Vertex added event. This event is fired after a vertex is added to a\n * graph.\n */\npublic static final int VERTEX_ADDED = 13;"
             ],
             [
                 "VERTEX_REMOVED",
                 "org.jgrapht.event",
                 "GraphVertexChangeEvent",
-                "public static final int VERTEX_REMOVED = 14;"
+                "/**\n * Vertex removed event. This event is fired after a vertex is removed from\n * a graph.\n */\npublic static final int VERTEX_REMOVED = 14;"
             ],
             [
                 "NULL_NODE",
@@ -1432,31 +1432,31 @@
                 "DEFAULT_EPSILON",
                 "org.jgrapht.alg",
                 "EdmondsKarpMaximumFlow",
-                "public static final double DEFAULT_EPSILON = 0.000000001;"
+                "/**\n * Default tolerance.\n */\npublic static final double DEFAULT_EPSILON = 0.000000001;"
             ],
             [
                 "INSTANCE",
                 "org.jgrapht.alg",
                 "TransitiveClosure",
-                "public static final TransitiveClosure INSTANCE = new TransitiveClosure();"
+                "/**\n * Singleton instance.\n */\npublic static final TransitiveClosure INSTANCE = new TransitiveClosure();"
             ],
             [
                 "INSTANCE",
                 "org.jgrapht.alg",
                 "TransitiveReduction",
-                "public static final TransitiveReduction INSTANCE = new TransitiveReduction();"
+                "/**\n * Singleton instance.\n */\npublic static final TransitiveReduction INSTANCE = new TransitiveReduction();"
             ],
             [
                 "NEGATIVE_UNDIRECTED_EDGE",
                 "org.jgrapht.alg",
                 "BellmanFordIterator",
-                "protected final static String NEGATIVE_UNDIRECTED_EDGE = \"Negative\" + \"edge-weights are not allowed in an unidrected graph!\";"
+                "/**\n * Error message.\n */\nprotected final static String NEGATIVE_UNDIRECTED_EDGE = \"Negative\" + \"edge-weights are not allowed in an unidrected graph!\";"
             ],
             [
                 "DEFAULT_EPSILON",
                 "org.jgrapht.alg.flow",
                 "MaximumFlowAlgorithmBase",
-                "public static final double DEFAULT_EPSILON = 1e-9;"
+                "/**\n * Default tolerance.\n */\npublic static final double DEFAULT_EPSILON = 1e-9;"
             ]
         ],
         "tokensMethodJavadocValues": [],
@@ -1468,12 +1468,6 @@
             ]
         ],
         "tokensMethodVariablesNonPrivateNonStaticNonVoidMethods": [
-            [
-                "equals",
-                "java.lang",
-                "Object",
-                "public boolean equals(Object arg0)"
-            ],
             [
                 "addVertex",
                 "org.jgrapht.graph.builder",
@@ -1487,28 +1481,10 @@
                 "public transient B addEdgeChain(V arg0, V arg1, V[] arg2)"
             ],
             [
-                "buildUnmodifiable",
-                "org.jgrapht.graph.builder",
-                "UndirectedGraphBuilderBase",
-                "public UnmodifiableUndirectedGraph<V, E> buildUnmodifiable()"
-            ],
-            [
-                "removeVertices",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "public transient B removeVertices(V[] arg0)"
-            ],
-            [
-                "addVertices",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "public transient B addVertices(V[] arg0)"
-            ],
-            [
-                "self",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "protected abstract B self()"
+                "hashCode",
+                "java.lang",
+                "Object",
+                "public native int hashCode()"
             ],
             [
                 "toString",
@@ -1517,40 +1493,16 @@
                 "public String toString()"
             ],
             [
-                "clone",
-                "java.lang",
-                "Object",
-                "protected native Object clone() throws CloneNotSupportedException"
-            ],
-            [
-                "buildUnmodifiable",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "public UnmodifiableGraph<V, E> buildUnmodifiable()"
-            ],
-            [
-                "addEdge",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "public B addEdge(V arg0, V arg1)"
-            ],
-            [
-                "build",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "public G build()"
-            ],
-            [
                 "addGraph",
                 "org.jgrapht.graph.builder",
                 "AbstractGraphBuilder",
                 "public B addGraph(Graph<? extends V, ? extends E> arg0)"
             ],
             [
-                "removeVertex",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "public B removeVertex(V arg0)"
+                "clone",
+                "java.lang",
+                "Object",
+                "protected native Object clone() throws CloneNotSupportedException"
             ],
             [
                 "getClass",
@@ -1559,16 +1511,64 @@
                 "public final native Class<? extends Object> getClass()"
             ],
             [
+                "addVertices",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "public transient B addVertices(V[] arg0)"
+            ],
+            [
+                "removeVertices",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "public transient B removeVertices(V[] arg0)"
+            ],
+            [
+                "removeVertex",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "public B removeVertex(V arg0)"
+            ],
+            [
+                "addEdge",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "public B addEdge(V arg0, V arg1)"
+            ],
+            [
                 "removeEdge",
                 "org.jgrapht.graph.builder",
                 "AbstractGraphBuilder",
                 "public B removeEdge(V arg0, V arg1)"
             ],
             [
-                "hashCode",
+                "self",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "protected abstract B self()"
+            ],
+            [
+                "buildUnmodifiable",
+                "org.jgrapht.graph.builder",
+                "UndirectedGraphBuilderBase",
+                "@Override\npublic UnmodifiableUndirectedGraph<V, E> buildUnmodifiable() {\n    return new UnmodifiableUndirectedGraph<V, E>(this.graph);\n}"
+            ],
+            [
+                "build",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "public G build()"
+            ],
+            [
+                "buildUnmodifiable",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "public UnmodifiableGraph<V, E> buildUnmodifiable()"
+            ],
+            [
+                "equals",
                 "java.lang",
                 "Object",
-                "public native int hashCode()"
+                "public boolean equals(Object arg0)"
             ]
         ],
         "tokensMethodVariablesNonPrivateNonStaticAttributes": [
@@ -2497,379 +2497,379 @@
                 "addVertices",
                 "org.jgrapht.experimental",
                 "RandomGraphHelper",
-                "public static Object[] addVertices(Graph target, VertexFactory vertexFactory, int numVertices)"
+                "/**\n * .\n *\n * @param target\n * @param vertexFactory\n * @param numVertices\n *\n * @return vertices\n */\n@SuppressWarnings(\"unchecked\")\npublic static Object[] addVertices(Graph target, VertexFactory vertexFactory, int numVertices) {\n    Object[] vertices = new Object[numVertices];\n    for (int i = 0; i < numVertices; ++i) {\n        vertices[i] = vertexFactory.createVertex();\n        target.addVertex(vertices[i]);\n    }\n    return vertices;\n}"
             ],
             [
                 "isEmpty",
                 "org.jgrapht.experimental",
                 "GraphTests",
-                "public static <V, E> boolean isEmpty(Graph<V, E> g)"
+                "public static <V, E> boolean isEmpty(Graph<V, E> g) {\n    return g.edgeSet().isEmpty();\n}"
             ],
             [
                 "isComplete",
                 "org.jgrapht.experimental",
                 "GraphTests",
-                "public static <V, E> boolean isComplete(Graph<V, E> g)"
+                "public static <V, E> boolean isComplete(Graph<V, E> g) {\n    int n = g.vertexSet().size();\n    return g.edgeSet().size() == (n * (n - 1) / 2);\n}"
             ],
             [
                 "isConnected",
                 "org.jgrapht.experimental",
                 "GraphTests",
-                "public static <V, E> boolean isConnected(Graph<V, E> g)"
+                "public static <V, E> boolean isConnected(Graph<V, E> g) {\n    int numVertices = g.vertexSet().size();\n    int numEdges = g.edgeSet().size();\n    if (numEdges < (numVertices - 1)) {\n        return false;\n    }\n    if ((numVertices < 2) || (numEdges > ((numVertices - 1) * (numVertices - 2) / 2))) {\n        return true;\n    }\n    Set<V> known = new HashSet<V>();\n    LinkedList<V> queue = new LinkedList<V>();\n    V v = g.vertexSet().iterator().next();\n    // start with node 1\n    queue.add(v);\n    known.add(v);\n    while (!queue.isEmpty()) {\n        v = queue.removeFirst();\n        for (Iterator<V> it = Graphs.neighborListOf(g, v).iterator(); it.hasNext(); ) {\n            v = it.next();\n            if (!known.contains(v)) {\n                known.add(v);\n                queue.add(v);\n            }\n        }\n    }\n    return known.size() == numVertices;\n}"
             ],
             [
                 "isTree",
                 "org.jgrapht.experimental",
                 "GraphTests",
-                "public static <V, E> boolean isTree(Graph<V, E> g)"
+                "public static <V, E> boolean isTree(Graph<V, E> g) {\n    return isConnected(g) && (g.edgeSet().size() == (g.vertexSet().size() - 1));\n}"
             ],
             [
                 "isBipartite",
                 "org.jgrapht.experimental",
                 "GraphTests",
-                "public static <V, E> boolean isBipartite(Graph<V, E> g)"
+                "public static <V, E> boolean isBipartite(Graph<V, E> g) {\n    if ((4 * g.edgeSet().size()) > (g.vertexSet().size() * g.vertexSet().size())) {\n        return false;\n    }\n    if (isEmpty(g)) {\n        return true;\n    }\n    Set<V> unknown = new HashSet<V>(g.vertexSet());\n    LinkedList<V> queue = new LinkedList<V>();\n    V v = unknown.iterator().next();\n    Set<V> odd = new HashSet<V>();\n    queue.add(v);\n    while (!unknown.isEmpty()) {\n        if (queue.isEmpty()) {\n            queue.add(unknown.iterator().next());\n        }\n        v = queue.removeFirst();\n        unknown.remove(v);\n        for (Iterator<V> it = Graphs.neighborListOf(g, v).iterator(); it.hasNext(); ) {\n            V n = it.next();\n            if (unknown.contains(n)) {\n                queue.add(n);\n                if (!odd.contains(v)) {\n                    odd.add(n);\n                }\n            } else if (!(odd.contains(v) ^ odd.contains(n))) {\n                return false;\n            }\n        }\n    }\n    return true;\n}"
             ],
             [
                 "union",
                 "org.jgrapht.util",
                 "FibonacciHeap",
-                "public static <T> FibonacciHeap<T> union(FibonacciHeap<T> h1, FibonacciHeap<T> h2)"
+                "// size\n/**\n * Joins two Fibonacci heaps into a new one. No heap consolidation is\n * performed at this time. The two root lists are simply joined together.\n *\n * <p>Running time: O(1) actual</p>\n *\n * @param h1 first heap\n * @param h2 second heap\n *\n * @return new heap containing h1 and h2\n */\npublic static <T> FibonacciHeap<T> union(FibonacciHeap<T> h1, FibonacciHeap<T> h2) {\n    FibonacciHeap<T> h = new FibonacciHeap<T>();\n    if ((h1 != null) && (h2 != null)) {\n        h.minNode = h1.minNode;\n        if (h.minNode != null) {\n            if (h2.minNode != null) {\n                h.minNode.right.left = h2.minNode.left;\n                h2.minNode.left.right = h.minNode.right;\n                h.minNode.right = h2.minNode;\n                h2.minNode.left = h.minNode;\n                if (h2.minNode.key < h1.minNode.key) {\n                    h.minNode = h2.minNode;\n                }\n            }\n        } else {\n            h.minNode = h2.minNode;\n        }\n        h.nNodes = h1.nNodes + h2.nNodes;\n    }\n    return h;\n}"
             ],
             [
                 "uncheckedCast",
                 "org.jgrapht.util",
                 "TypeUtil",
-                "public static <T> T uncheckedCast(Object o, TypeUtil<T> typeDecl)"
+                "/**\n * Casts an object to a type.\n *\n * @param o object to be cast\n * @param typeDecl conveys the target type information; the actual value is\n * unused and can be null since this is all just stupid compiler tricks\n *\n * @return the result of the cast\n */\n@SuppressWarnings(\"unchecked\")\npublic static <T> T uncheckedCast(Object o, TypeUtil<T> typeDecl) {\n    return (T) o;\n}"
             ],
             [
                 "factorial",
                 "org.jgrapht.util",
                 "MathUtil",
-                "public static long factorial(int N)"
+                "public static long factorial(int N) {\n    long multi = 1;\n    for (int i = 1; i <= N; i++) {\n        multi = multi * i;\n    }\n    return multi;\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleGraph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends SimpleGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends SimpleGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedGraphBuilder<V, E, SimpleGraph<V, E>>(new SimpleGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleGraph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends SimpleGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends SimpleGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedGraphBuilder<V, E, SimpleGraph<V, E>>(new SimpleGraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "WeightedPseudograph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedWeightedGraphBuilder<V, E, WeightedPseudograph<V, E>>(new WeightedPseudograph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "WeightedPseudograph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedWeightedGraphBuilder<V, E, WeightedPseudograph<V, E>>(new WeightedPseudograph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "Pseudograph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Pseudograph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Pseudograph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedGraphBuilder<V, E, Pseudograph<V, E>>(new Pseudograph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "Pseudograph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Pseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Pseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedGraphBuilder<V, E, Pseudograph<V, E>>(new Pseudograph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedMultigraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedGraphBuilder<V, E, DirectedMultigraph<V, E>>(new DirectedMultigraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedMultigraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedGraphBuilder<V, E, DirectedMultigraph<V, E>>(new DirectedMultigraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedWeightedPseudograph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedWeightedGraphBuilder<V, E, DirectedWeightedPseudograph<V, E>>(new DirectedWeightedPseudograph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedWeightedPseudograph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedWeightedGraphBuilder<V, E, DirectedWeightedPseudograph<V, E>>(new DirectedWeightedPseudograph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "Multigraph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Multigraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Multigraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedGraphBuilder<V, E, Multigraph<V, E>>(new Multigraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "Multigraph",
-                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Multigraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Multigraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedGraphBuilder<V, E, Multigraph<V, E>>(new Multigraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DefaultDirectedGraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DefaultDirectedGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DefaultDirectedGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedGraphBuilder<V, E, DefaultDirectedGraph<V, E>>(new DefaultDirectedGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DefaultDirectedGraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DefaultDirectedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DefaultDirectedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedGraphBuilder<V, E, DefaultDirectedGraph<V, E>>(new DefaultDirectedGraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DefaultDirectedWeightedGraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DefaultDirectedWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DefaultDirectedWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedWeightedGraphBuilder<V, E, DefaultDirectedWeightedGraph<V, E>>(new DefaultDirectedWeightedGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DefaultDirectedWeightedGraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DefaultDirectedWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DefaultDirectedWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedWeightedGraphBuilder<V, E, DefaultDirectedWeightedGraph<V, E>>(new DefaultDirectedWeightedGraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedPseudograph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedPseudograph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedGraphBuilder<V, E, DirectedPseudograph<V, E>>(new DirectedPseudograph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedPseudograph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends DirectedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedGraphBuilder<V, E, DirectedPseudograph<V, E>>(new DirectedPseudograph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleWeightedGraph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends SimpleWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends SimpleWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedWeightedGraphBuilder<V, E, SimpleWeightedGraph<V, E>>(new SimpleWeightedGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleWeightedGraph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends SimpleWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends SimpleWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedWeightedGraphBuilder<V, E, SimpleWeightedGraph<V, E>>(new SimpleWeightedGraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleDirectedWeightedGraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends SimpleDirectedWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends SimpleDirectedWeightedGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedWeightedGraphBuilder<V, E, SimpleDirectedWeightedGraph<V, E>>(new SimpleDirectedWeightedGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleDirectedWeightedGraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends SimpleDirectedWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends SimpleDirectedWeightedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedWeightedGraphBuilder<V, E, SimpleDirectedWeightedGraph<V, E>>(new SimpleDirectedWeightedGraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "WeightedMultigraph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new UndirectedWeightedGraphBuilder<V, E, WeightedMultigraph<V, E>>(new WeightedMultigraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "WeightedMultigraph",
-                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new UndirectedWeightedGraphBuilder<V, E, WeightedMultigraph<V, E>>(new WeightedMultigraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedWeightedMultigraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedMultigraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedWeightedGraphBuilder<V, E, DirectedWeightedMultigraph<V, E>>(new DirectedWeightedMultigraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "DirectedWeightedMultigraph",
-                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedWeightedGraphBuilderBase<V, E, ? extends DirectedWeightedMultigraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedWeightedGraphBuilder<V, E, DirectedWeightedMultigraph<V, E>>(new DirectedWeightedMultigraph<V, E>(ef));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleDirectedGraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends SimpleDirectedGraph<V, E>, ?> builder(Class<? extends E> edgeClass)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends SimpleDirectedGraph<V, E>, ?> builder(Class<? extends E> edgeClass) {\n    return new DirectedGraphBuilder<V, E, SimpleDirectedGraph<V, E>>(new SimpleDirectedGraph<V, E>(edgeClass));\n}"
             ],
             [
                 "builder",
                 "org.jgrapht.graph",
                 "SimpleDirectedGraph",
-                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends SimpleDirectedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)"
+                "public static <V, E> DirectedGraphBuilderBase<V, E, ? extends SimpleDirectedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef) {\n    return new DirectedGraphBuilder<V, E, SimpleDirectedGraph<V, E>>(new SimpleDirectedGraph<V, E>(ef));\n}"
             ],
             [
                 "addEdge",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> E addEdge(Graph<V, E> g, V sourceVertex, V targetVertex, double weight)"
+                "/**\n * Creates a new edge and adds it to the specified graph similarly to the\n * {@link Graph#addEdge(Object, Object)} method.\n *\n * @param g the graph for which the edge to be added.\n * @param sourceVertex source vertex of the edge.\n * @param targetVertex target vertex of the edge.\n * @param weight weight of the edge.\n *\n * @return The newly created edge if added to the graph, otherwise <code>\n * null</code>.\n *\n * @see Graph#addEdge(Object, Object)\n */\npublic static <V, E> E addEdge(Graph<V, E> g, V sourceVertex, V targetVertex, double weight) {\n    EdgeFactory<V, E> ef = g.getEdgeFactory();\n    E e = ef.createEdge(sourceVertex, targetVertex);\n    // we first create the edge and set the weight to make sure that\n    // listeners will see the correct weight upon addEdge.\n    assert (g instanceof WeightedGraph<?, ?>) : g.getClass();\n    ((WeightedGraph<V, E>) g).setEdgeWeight(e, weight);\n    return g.addEdge(sourceVertex, targetVertex, e) ? e : null;\n}"
             ],
             [
                 "addEdgeWithVertices",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> E addEdgeWithVertices(Graph<V, E> g, V sourceVertex, V targetVertex)"
+                "/**\n * Adds the specified source and target vertices to the graph, if not\n * already included, and creates a new edge and adds it to the specified\n * graph similarly to the {@link Graph#addEdge(Object, Object)} method.\n *\n * @param g the graph for which the specified edge to be added.\n * @param sourceVertex source vertex of the edge.\n * @param targetVertex target vertex of the edge.\n *\n * @return The newly created edge if added to the graph, otherwise <code>\n * null</code>.\n */\npublic static <V, E> E addEdgeWithVertices(Graph<V, E> g, V sourceVertex, V targetVertex) {\n    g.addVertex(sourceVertex);\n    g.addVertex(targetVertex);\n    return g.addEdge(sourceVertex, targetVertex);\n}"
             ],
             [
                 "addEdgeWithVertices",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> boolean addEdgeWithVertices(Graph<V, E> targetGraph, Graph<V, E> sourceGraph, E edge)"
+                "/**\n * Adds the specified edge to the graph, including its vertices if not\n * already included.\n *\n * @param targetGraph the graph for which the specified edge to be added.\n * @param sourceGraph the graph in which the specified edge is already\n * present\n * @param edge edge to add\n *\n * @return <tt>true</tt> if the target graph did not already contain the\n * specified edge.\n */\npublic static <V, E> boolean addEdgeWithVertices(Graph<V, E> targetGraph, Graph<V, E> sourceGraph, E edge) {\n    V sourceVertex = sourceGraph.getEdgeSource(edge);\n    V targetVertex = sourceGraph.getEdgeTarget(edge);\n    targetGraph.addVertex(sourceVertex);\n    targetGraph.addVertex(targetVertex);\n    return targetGraph.addEdge(sourceVertex, targetVertex, edge);\n}"
             ],
             [
                 "addEdgeWithVertices",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> E addEdgeWithVertices(Graph<V, E> g, V sourceVertex, V targetVertex, double weight)"
+                "/**\n * Adds the specified source and target vertices to the graph, if not\n * already included, and creates a new weighted edge and adds it to the\n * specified graph similarly to the {@link Graph#addEdge(Object, Object)}\n * method.\n *\n * @param g the graph for which the specified edge to be added.\n * @param sourceVertex source vertex of the edge.\n * @param targetVertex target vertex of the edge.\n * @param weight weight of the edge.\n *\n * @return The newly created edge if added to the graph, otherwise <code>\n * null</code>.\n */\npublic static <V, E> E addEdgeWithVertices(Graph<V, E> g, V sourceVertex, V targetVertex, double weight) {\n    g.addVertex(sourceVertex);\n    g.addVertex(targetVertex);\n    return addEdge(g, sourceVertex, targetVertex, weight);\n}"
             ],
             [
                 "addGraph",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> boolean addGraph(Graph<? super V, ? super E> destination, Graph<V, E> source)"
+                "/**\n * Adds all the vertices and all the edges of the specified source graph to\n * the specified destination graph. First all vertices of the source graph\n * are added to the destination graph. Then every edge of the source graph\n * is added to the destination graph. This method returns <code>true</code>\n * if the destination graph has been modified as a result of this operation,\n * otherwise it returns <code>false</code>.\n *\n * <p>The behavior of this operation is undefined if any of the specified\n * graphs is modified while operation is in progress.</p>\n *\n * @param destination the graph to which vertices and edges are added.\n * @param source the graph used as source for vertices and edges to add.\n *\n * @return <code>true</code> if and only if the destination graph has been\n * changed as a result of this operation.\n */\npublic static <V, E> boolean addGraph(Graph<? super V, ? super E> destination, Graph<V, E> source) {\n    boolean modified = addAllVertices(destination, source.vertexSet());\n    modified |= addAllEdges(destination, source, source.edgeSet());\n    return modified;\n}"
             ],
             [
                 "addAllEdges",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> boolean addAllEdges(Graph<? super V, ? super E> destination, Graph<V, E> source, Collection<? extends E> edges)"
+                "/**\n * Adds a subset of the edges of the specified source graph to the specified\n * destination graph. The behavior of this operation is undefined if either\n * of the graphs is modified while the operation is in progress. {@link\n * #addEdgeWithVertices} is used for the transfer, so source vertexes will\n * be added automatically to the target graph.\n *\n * @param destination the graph to which edges are to be added\n * @param source the graph used as a source for edges to add\n * @param edges the edges to be added\n *\n * @return <tt>true</tt> if this graph changed as a result of the call\n */\npublic static <V, E> boolean addAllEdges(Graph<? super V, ? super E> destination, Graph<V, E> source, Collection<? extends E> edges) {\n    boolean modified = false;\n    for (E e : edges) {\n        V s = source.getEdgeSource(e);\n        V t = source.getEdgeTarget(e);\n        destination.addVertex(s);\n        destination.addVertex(t);\n        modified |= destination.addEdge(s, t, e);\n    }\n    return modified;\n}"
             ],
             [
                 "addAllVertices",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> boolean addAllVertices(Graph<? super V, ? super E> destination, Collection<? extends V> vertices)"
+                "/**\n * Adds all of the specified vertices to the destination graph. The behavior\n * of this operation is undefined if the specified vertex collection is\n * modified while the operation is in progress. This method will invoke the\n * {@link Graph#addVertex(Object)} method.\n *\n * @param destination the graph to which edges are to be added\n * @param vertices the vertices to be added to the graph.\n *\n * @return <tt>true</tt> if graph changed as a result of the call\n *\n * @throws NullPointerException if the specified vertices contains one or\n * more null vertices, or if the specified vertex collection is <tt>\n * null</tt>.\n *\n * @see Graph#addVertex(Object)\n */\npublic static <V, E> boolean addAllVertices(Graph<? super V, ? super E> destination, Collection<? extends V> vertices) {\n    boolean modified = false;\n    for (V v : vertices) {\n        modified |= destination.addVertex(v);\n    }\n    return modified;\n}"
             ],
             [
                 "neighborListOf",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> List<V> neighborListOf(Graph<V, E> g, V vertex)"
+                "/**\n * Returns a list of vertices that are the neighbors of a specified vertex.\n * If the graph is a multigraph vertices may appear more than once in the\n * returned list.\n *\n * @param g the graph to look for neighbors in.\n * @param vertex the vertex to get the neighbors of.\n *\n * @return a list of the vertices that are the neighbors of the specified\n * vertex.\n */\npublic static <V, E> List<V> neighborListOf(Graph<V, E> g, V vertex) {\n    List<V> neighbors = new ArrayList<V>();\n    for (E e : g.edgesOf(vertex)) {\n        neighbors.add(getOppositeVertex(g, e, vertex));\n    }\n    return neighbors;\n}"
             ],
             [
                 "predecessorListOf",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> List<V> predecessorListOf(DirectedGraph<V, E> g, V vertex)"
+                "/**\n * Returns a list of vertices that are the direct predecessors of a\n * specified vertex. If the graph is a multigraph, vertices may appear more\n * than once in the returned list.\n *\n * @param g the graph to look for predecessors in.\n * @param vertex the vertex to get the predecessors of.\n *\n * @return a list of the vertices that are the direct predecessors of the\n * specified vertex.\n */\npublic static <V, E> List<V> predecessorListOf(DirectedGraph<V, E> g, V vertex) {\n    List<V> predecessors = new ArrayList<V>();\n    Set<? extends E> edges = g.incomingEdgesOf(vertex);\n    for (E e : edges) {\n        predecessors.add(getOppositeVertex(g, e, vertex));\n    }\n    return predecessors;\n}"
             ],
             [
                 "successorListOf",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> List<V> successorListOf(DirectedGraph<V, E> g, V vertex)"
+                "/**\n * Returns a list of vertices that are the direct successors of a specified\n * vertex. If the graph is a multigraph vertices may appear more than once\n * in the returned list.\n *\n * @param g the graph to look for successors in.\n * @param vertex the vertex to get the successors of.\n *\n * @return a list of the vertices that are the direct successors of the\n * specified vertex.\n */\npublic static <V, E> List<V> successorListOf(DirectedGraph<V, E> g, V vertex) {\n    List<V> successors = new ArrayList<V>();\n    Set<? extends E> edges = g.outgoingEdgesOf(vertex);\n    for (E e : edges) {\n        successors.add(getOppositeVertex(g, e, vertex));\n    }\n    return successors;\n}"
             ],
             [
                 "undirectedGraph",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> UndirectedGraph<V, E> undirectedGraph(Graph<V, E> g)"
+                "/**\n * Returns an undirected view of the specified graph. If the specified graph\n * is directed, returns an undirected view of it. If the specified graph is\n * already undirected, just returns it.\n *\n * @param g the graph for which an undirected view is to be returned.\n *\n * @return an undirected view of the specified graph, if it is directed, or\n * or the specified graph itself if it is already undirected.\n *\n * @throws IllegalArgumentException if the graph is neither DirectedGraph\n * nor UndirectedGraph.\n *\n * @see AsUndirectedGraph\n */\npublic static <V, E> UndirectedGraph<V, E> undirectedGraph(Graph<V, E> g) {\n    if (g instanceof DirectedGraph<?, ?>) {\n        return new AsUndirectedGraph<V, E>((DirectedGraph<V, E>) g);\n    } else if (g instanceof UndirectedGraph<?, ?>) {\n        return (UndirectedGraph<V, E>) g;\n    } else {\n        throw new IllegalArgumentException(\"Graph must be either DirectedGraph or UndirectedGraph\");\n    }\n}"
             ],
             [
                 "testIncidence",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> boolean testIncidence(Graph<V, E> g, E e, V v)"
+                "/**\n * Tests whether an edge is incident to a vertex.\n *\n * @param g graph containing e and v\n * @param e edge in g\n * @param v vertex in g\n *\n * @return true iff e is incident on v\n */\npublic static <V, E> boolean testIncidence(Graph<V, E> g, E e, V v) {\n    return (g.getEdgeSource(e).equals(v)) || (g.getEdgeTarget(e).equals(v));\n}"
             ],
             [
                 "getOppositeVertex",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> V getOppositeVertex(Graph<V, E> g, E e, V v)"
+                "/**\n * Gets the vertex opposite another vertex across an edge.\n *\n * @param g graph containing e and v\n * @param e edge in g\n * @param v vertex in g\n *\n * @return vertex opposite to v across e\n */\npublic static <V, E> V getOppositeVertex(Graph<V, E> g, E e, V v) {\n    V source = g.getEdgeSource(e);\n    V target = g.getEdgeTarget(e);\n    if (v.equals(source)) {\n        return target;\n    } else if (v.equals(target)) {\n        return source;\n    } else {\n        throw new IllegalArgumentException(\"no such vertex: \" + v.toString());\n    }\n}"
             ],
             [
                 "getPathVertexList",
                 "org.jgrapht",
                 "Graphs",
-                "public static <V, E> List<V> getPathVertexList(GraphPath<V, E> path)"
+                "/**\n * Gets the list of vertices visited by a path.\n *\n * @param path path of interest\n *\n * @return corresponding vertex list\n */\npublic static <V, E> List<V> getPathVertexList(GraphPath<V, E> path) {\n    Graph<V, E> g = path.getGraph();\n    List<V> list = new ArrayList<V>();\n    V v = path.getStartVertex();\n    list.add(v);\n    for (E e : path.getEdgeList()) {\n        v = getOppositeVertex(g, e, v);\n        list.add(v);\n    }\n    return list;\n}"
             ],
             [
                 "range",
                 "org.jgrapht.generate",
                 "SimpleWeightedGraphMatrixGenerator",
-                "public static int[] range(final int from, final int to)"
+                "///////////////////////////////////////////////////////////////////////////////////////////////\npublic static int[] range(final int from, final int to) {\n    int[] range = new int[to - from];\n    for (int i = from; i < to; ++i) {\n        range[i - from] = i;\n    }\n    return range;\n}"
             ],
             [
                 "createGraphSpecifics",
                 "org.jgrapht.traverse",
                 "CrossComponentIterator",
-                "static <V, E> Specifics<V, E> createGraphSpecifics(Graph<V, E> g)"
+                "// -------------------------------------------------------------------------\n/**\n * @param <V>\n * @param <E>\n * @param g\n *\n * @return TODO Document me\n */\nstatic <V, E> Specifics<V, E> createGraphSpecifics(Graph<V, E> g) {\n    if (g instanceof DirectedGraph<?, ?>) {\n        return new DirectedSpecifics<V, E>((DirectedGraph<V, E>) g);\n    } else {\n        return new UndirectedSpecifics<V, E>(g);\n    }\n}"
             ],
             [
                 "findGreedyChromaticNumber",
                 "org.jgrapht.alg",
                 "ChromaticNumber",
-                "public static <V, E> int findGreedyChromaticNumber(UndirectedGraph<V, E> g)"
+                "/**\n * Finds the number of colors required for a greedy coloring of the graph.\n *\n * @param g an undirected graph to find the chromatic number of\n *\n * @return integer the approximate chromatic number from the greedy\n * algorithm\n */\npublic static <V, E> int findGreedyChromaticNumber(UndirectedGraph<V, E> g) {\n    Map<Integer, Set<V>> coloredGroups = findGreedyColoredGroups(g);\n    return coloredGroups.keySet().size();\n}"
             ],
             [
                 "findGreedyColoredGroups",
                 "org.jgrapht.alg",
                 "ChromaticNumber",
-                "public static <V, E> Map<Integer, Set<V>> findGreedyColoredGroups(UndirectedGraph<V, E> g)"
+                "/**\n * Finds a greedy coloring of the graph.\n *\n * @param g an undirected graph for which to find the coloring\n */\npublic static <V, E> Map<Integer, Set<V>> findGreedyColoredGroups(UndirectedGraph<V, E> g) {\n    // A copy of the graph is made, so that elements of the graph may be\n    // removed to carry out the algorithm\n    UndirectedGraph<V, E> sg = new UndirectedSubgraph<V, E>(g, null, null);\n    // The Vertices will be sorted in decreasing order by degree, so that\n    // higher degree vertices have priority to be colored first\n    VertexDegreeComparator<V, E> comp = new VertexDegreeComparator<V, E>(sg);\n    List<V> sortedVertices = new LinkedList<V>(sg.vertexSet());\n    Collections.sort(sortedVertices, comp);\n    Collections.reverse(sortedVertices);\n    int color;\n    // create a map which will hold color as key and Set<V> as value\n    Map<Integer, Set<V>> coloredGroups = new HashMap<Integer, Set<V>>();\n    // We'll attempt to color each vertex with a single color each\n    // iteration, and these vertices will be removed from the graph at the\n    // end of each iteration\n    for (color = 0; sg.vertexSet().size() > 0; color++) {\n        // This set will contain vertices that are colored with the\n        // current color of this iteration\n        Set<V> currentColor = new HashSet<V>();\n        for (Iterator<V> iter = sortedVertices.iterator(); iter.hasNext(); ) {\n            V v = iter.next();\n            // Add new vertices to be colored as long as they are not\n            // adjacent with any other vertex that has already been colored\n            // with the current color\n            boolean flag = true;\n            for (Iterator<V> innerIter = currentColor.iterator(); innerIter.hasNext(); ) {\n                V temp = innerIter.next();\n                if (sg.containsEdge(temp, v)) {\n                    flag = false;\n                    break;\n                }\n            }\n            if (flag) {\n                currentColor.add(v);\n                iter.remove();\n            }\n        }\n        // Add all these vertices as a group for this color\n        coloredGroups.put(color, currentColor);\n        // Remove vertices from the graph and then repeat the process for\n        // the next iteration\n        sg.removeAllVertices(currentColor);\n    }\n    return coloredGroups;\n}"
             ],
             [
                 "findPathBetween",
                 "org.jgrapht.alg",
                 "BellmanFordShortestPath",
-                "public static <V, E> List<E> findPathBetween(Graph<V, E> graph, V startVertex, V endVertex)"
+                "/**\n * Convenience method to find the shortest path via a single static method\n * call. If you need a more advanced search (e.g. limited by hops, or\n * computation of the path length), use the constructor instead.\n *\n * @param graph the graph to be searched\n * @param startVertex the vertex at which the path should start\n * @param endVertex the vertex at which the path should end\n *\n * @return List of Edges, or null if no path exists\n */\npublic static <V, E> List<E> findPathBetween(Graph<V, E> graph, V startVertex, V endVertex) {\n    BellmanFordShortestPath<V, E> alg = new BellmanFordShortestPath<V, E>(graph, startVertex);\n    return alg.getPathEdgeList(endVertex);\n}"
             ],
             [
                 "findPathBetween",
                 "org.jgrapht.alg",
                 "DijkstraShortestPath",
-                "public static <V, E> List<E> findPathBetween(Graph<V, E> graph, V startVertex, V endVertex)"
+                "/**\n * Convenience method to find the shortest path via a single static method\n * call. If you need a more advanced search (e.g. limited by radius, or\n * computation of the path length), use the constructor instead.\n *\n * @param graph the graph to be searched\n * @param startVertex the vertex at which the path should start\n * @param endVertex the vertex at which the path should end\n *\n * @return List of Edges, or null if no path exists\n */\npublic static <V, E> List<E> findPathBetween(Graph<V, E> graph, V startVertex, V endVertex) {\n    DijkstraShortestPath<V, E> alg = new DijkstraShortestPath<V, E>(graph, startVertex, endVertex);\n    return alg.getPathEdgeList();\n}"
             ],
             [
                 "of",
                 "org.jgrapht.alg.util",
                 "Pair",
-                "public static <A, B> Pair<A, B> of(A a, B b)"
+                "/**\n * Creates new pair of elements pulling of the necessity to provide\n * corresponding types of the elements supplied\n *\n * @param a first element\n * @param b second element\n *\n * @return new pair\n */\npublic static <A, B> Pair<A, B> of(A a, B b) {\n    return new Pair<A, B>(a, b);\n}"
             ],
             [
                 "isEulerian",
                 "org.jgrapht.alg",
                 "EulerianCircuit",
-                "public static <V, E> boolean isEulerian(UndirectedGraph<V, E> g)"
+                "/**\n * This method will check whether the graph passed in is Eulerian or not.\n *\n * @param g The graph to be checked\n *\n * @return true for Eulerian and false for non-Eulerian\n */\npublic static <V, E> boolean isEulerian(UndirectedGraph<V, E> g) {\n    // If the graph is not connected, then no Eulerian circuit exists\n    if (!(new ConnectivityInspector<V, E>(g)).isGraphConnected()) {\n        return false;\n    }\n    // A graph is Eulerian if and only if all vertices have even degree\n    // So, this code will check for that\n    Iterator<V> iter = g.vertexSet().iterator();\n    while (iter.hasNext()) {\n        V v = iter.next();\n        if ((g.degreeOf(v) % 2) == 1) {\n            return false;\n        }\n    }\n    return true;\n}"
             ],
             [
                 "getEulerianCircuitVertices",
                 "org.jgrapht.alg",
                 "EulerianCircuit",
-                "public static <V, E> List<V> getEulerianCircuitVertices(UndirectedGraph<V, E> g)"
+                "/**\n * This method will return a list of vertices which represents the Eulerian\n * circuit of the graph.\n *\n * @param g The graph to find an Eulerian circuit\n *\n * @return null if no Eulerian circuit exists, or a list of vertices\n * representing the Eulerian circuit if one does exist\n */\npublic static <V, E> List<V> getEulerianCircuitVertices(UndirectedGraph<V, E> g) {\n    // If the graph is not Eulerian then just return a null since no\n    // Eulerian circuit exists\n    if (!isEulerian(g)) {\n        return null;\n    }\n    // The circuit will be represented by a linked list\n    List<V> path = new LinkedList<V>();\n    UndirectedGraph<V, E> sg = new UndirectedSubgraph<V, E>(g, null, null);\n    path.add(sg.vertexSet().iterator().next());\n    // Algorithm for finding an Eulerian circuit Basically this will find an\n    // arbitrary circuit, then it will find another arbitrary circuit until\n    // every edge has been traversed\n    while (sg.edgeSet().size() > 0) {\n        V v = null;\n        // Find a vertex which has an edge that hasn't been traversed yet,\n        // and keep its index position in the circuit list\n        int index = 0;\n        for (Iterator<V> iter = path.iterator(); iter.hasNext(); index++) {\n            v = iter.next();\n            if (sg.degreeOf(v) > 0) {\n                break;\n            }\n        }\n        // Finds an arbitrary circuit of the current vertex and\n        // appends this into the circuit list\n        while (sg.degreeOf(v) > 0) {\n            for (Iterator<V> iter = sg.vertexSet().iterator(); iter.hasNext(); ) {\n                V temp = iter.next();\n                if (sg.containsEdge(v, temp)) {\n                    path.add(index, temp);\n                    sg.removeEdge(v, temp);\n                    v = temp;\n                    break;\n                }\n            }\n        }\n    }\n    return path;\n}"
             ],
             [
                 "getApproximateOptimalForCompleteGraph",
                 "org.jgrapht.alg",
                 "HamiltonianCycle",
-                "public static <V, E> List<V> getApproximateOptimalForCompleteGraph(SimpleWeightedGraph<V, E> g)"
+                "/**\n * This method will return an approximate minimal traveling salesman tour\n * (hamiltonian cycle). This algorithm requires that the graph be complete\n * and the triangle inequality exists (if x,y,z are vertices then\n * d(x,y)+d(y,z) &lt; d(x,z) for all x,y,z) then this algorithm will\n * guarantee a hamiltonian cycle such that the total weight of the cycle is\n * less than or equal to double the total weight of the optimal hamiltonian\n * cycle. The optimal solution is NP-complete, so this is a decent\n * approximation that runs in polynomial time.\n *\n * @param <V>\n * @param <E>\n * @param g is the graph to find the optimal tour for.\n *\n * @return The optimal tour as a list of vertices.\n */\npublic static <V, E> List<V> getApproximateOptimalForCompleteGraph(SimpleWeightedGraph<V, E> g) {\n    List<V> vertices = new LinkedList<V>(g.vertexSet());\n    // If the graph is not complete then return null since this algorithm\n    // requires the graph be complete\n    if ((vertices.size() * (vertices.size() - 1) / 2) != g.edgeSet().size()) {\n        return null;\n    }\n    List<V> tour = new LinkedList<V>();\n    // Each iteration a new vertex will be added to the tour until all\n    // vertices have been added\n    while (tour.size() != g.vertexSet().size()) {\n        boolean firstEdge = true;\n        double minEdgeValue = 0;\n        int minVertexFound = 0;\n        int vertexConnectedTo = 0;\n        // A check will be made for the shortest edge to a vertex not within\n        // the tour and that new vertex will be added to the vertex\n        for (int i = 0; i < tour.size(); i++) {\n            V v = tour.get(i);\n            for (int j = 0; j < vertices.size(); j++) {\n                double weight = g.getEdgeWeight(g.getEdge(v, vertices.get(j)));\n                if (firstEdge || (weight < minEdgeValue)) {\n                    firstEdge = false;\n                    minEdgeValue = weight;\n                    minVertexFound = j;\n                    vertexConnectedTo = i;\n                }\n            }\n        }\n        tour.add(vertexConnectedTo, vertices.get(minVertexFound));\n        vertices.remove(minVertexFound);\n    }\n    return tour;\n}"
             ],
             [
                 "find2ApproximationCover",
                 "org.jgrapht.alg",
                 "VertexCovers",
-                "public static <V, E> Set<V> find2ApproximationCover(Graph<V, E> g)"
+                "/**\n * Finds a 2-approximation for a minimal vertex cover of the specified\n * graph. The algorithm promises a cover that is at most double the size of\n * a minimal cover. The algorithm takes O(|E|) time.\n *\n * <p>For more details see Jenny Walter, CMPU-240: Lecture notes for\n * Language Theory and Computation, Fall 2002, Vassar College, <a\n * href=\"http://www.cs.vassar.edu/~walter/cs241index/lectures/PDF/approx.pdf\">\n * http://www.cs.vassar.edu/~walter/cs241index/lectures/PDF/approx.pdf</a>.\n * </p>\n *\n * @param g the graph for which vertex cover approximation is to be found.\n *\n * @return a set of vertices which is a vertex cover for the specified\n * graph.\n */\npublic static <V, E> Set<V> find2ApproximationCover(Graph<V, E> g) {\n    // C <-- {}\n    Set<V> cover = new HashSet<V>();\n    // G'=(V',E') <-- G(V,E)\n    Subgraph<V, E, Graph<V, E>> sg = new Subgraph<V, E, Graph<V, E>>(g, null, null);\n    // while E' is non-empty\n    while (sg.edgeSet().size() > 0) {\n        // let (u,v) be an arbitrary edge of E'\n        E e = sg.edgeSet().iterator().next();\n        // C <-- C U {u,v}\n        V u = g.getEdgeSource(e);\n        V v = g.getEdgeTarget(e);\n        cover.add(u);\n        cover.add(v);\n        // remove from E' every edge incident on either u or v\n        sg.removeVertex(u);\n        sg.removeVertex(v);\n    }\n    // return C\n    return cover;\n}"
             ],
             [
                 "findGreedyCover",
                 "org.jgrapht.alg",
                 "VertexCovers",
-                "public static <V, E> Set<V> findGreedyCover(UndirectedGraph<V, E> g)"
+                "/**\n * Finds a greedy approximation for a minimal vertex cover of a specified\n * graph. At each iteration, the algorithm picks the vertex with the highest\n * degree and adds it to the cover, until all edges are covered.\n *\n * <p>The algorithm works on undirected graphs, but can also work on\n * directed graphs when their edge-directions are ignored. To ignore edge\n * directions you can use {@link org.jgrapht.Graphs#undirectedGraph(Graph)}\n * or {@link org.jgrapht.graph.AsUndirectedGraph}.</p>\n *\n * @param g the graph for which vertex cover approximation is to be found.\n *\n * @return a set of vertices which is a vertex cover for the specified\n * graph.\n */\npublic static <V, E> Set<V> findGreedyCover(UndirectedGraph<V, E> g) {\n    // C <-- {}\n    Set<V> cover = new HashSet<V>();\n    // G' <-- G\n    UndirectedGraph<V, E> sg = new UndirectedSubgraph<V, E>(g, null, null);\n    // compare vertices in descending order of degree\n    VertexDegreeComparator<V, E> comp = new VertexDegreeComparator<V, E>(sg);\n    // while G' != {}\n    while (sg.edgeSet().size() > 0) {\n        // v <-- vertex with maximum degree in G'\n        V v = Collections.max(sg.vertexSet(), comp);\n        // C <-- C U {v}\n        cover.add(v);\n        // remove from G' every edge incident on v, and v itself\n        sg.removeVertex(v);\n    }\n    return cover;\n}"
             ]
         ],
         "tokensProjectClassesNonPrivateStaticAttributes": [
@@ -2901,31 +2901,31 @@
                 "DEFAULT_EDGE_WEIGHT",
                 "org.jgrapht",
                 "WeightedGraph",
-                "public static double DEFAULT_EDGE_WEIGHT = 1.0;"
+                "/**\n * The default weight for an edge.\n */\npublic static double DEFAULT_EDGE_WEIGHT = 1.0;"
             ],
             [
                 "HUB_VERTEX",
                 "org.jgrapht.generate",
                 "WheelGraphGenerator",
-                "public static final String HUB_VERTEX = \"Hub Vertex\";"
+                "/**\n * Role for the hub vertex.\n */\npublic static final String HUB_VERTEX = \"Hub Vertex\";"
             ],
             [
                 "CORNER_VERTEX",
                 "org.jgrapht.generate",
                 "GridGraphGenerator",
-                "public static final String CORNER_VERTEX = \"Corner Vertex\";"
+                "/**\n * Role for the vertices at the corners.\n */\npublic static final String CORNER_VERTEX = \"Corner Vertex\";"
             ],
             [
                 "START_VERTEX",
                 "org.jgrapht.generate",
                 "LinearGraphGenerator",
-                "public static final String START_VERTEX = \"Start Vertex\";"
+                "/**\n * Role for the first vertex generated.\n */\npublic static final String START_VERTEX = \"Start Vertex\";"
             ],
             [
                 "END_VERTEX",
                 "org.jgrapht.generate",
                 "LinearGraphGenerator",
-                "public static final String END_VERTEX = \"End Vertex\";"
+                "/**\n * Role for the last vertex generated.\n */\npublic static final String END_VERTEX = \"End Vertex\";"
             ],
             [
                 "CENTER_VERTEX",
@@ -2937,67 +2937,67 @@
                 "SENTINEL",
                 "org.jgrapht.traverse",
                 "DepthFirstIterator",
-                "public static final Object SENTINEL = new Object();"
+                "/**\n * Sentinel object. Unfortunately, we can't use null, because ArrayDeque\n * won't accept those. And we don't want to rely on the caller to provide a\n * sentinel object for us. So we have to play typecasting games.\n */\npublic static final Object SENTINEL = new Object();"
             ],
             [
                 "BEFORE_EDGE_ADDED",
                 "org.jgrapht.event",
                 "GraphEdgeChangeEvent",
-                "public static final int BEFORE_EDGE_ADDED = 21;"
+                "/**\n * Before edge added event. This event is fired before an edge is added to a\n * graph.\n */\npublic static final int BEFORE_EDGE_ADDED = 21;"
             ],
             [
                 "BEFORE_EDGE_REMOVED",
                 "org.jgrapht.event",
                 "GraphEdgeChangeEvent",
-                "public static final int BEFORE_EDGE_REMOVED = 22;"
+                "/**\n * Before edge removed event. This event is fired before an edge is removed\n * from a graph.\n */\npublic static final int BEFORE_EDGE_REMOVED = 22;"
             ],
             [
                 "EDGE_ADDED",
                 "org.jgrapht.event",
                 "GraphEdgeChangeEvent",
-                "public static final int EDGE_ADDED = 23;"
+                "/**\n * Edge added event. This event is fired after an edge is added to a graph.\n */\npublic static final int EDGE_ADDED = 23;"
             ],
             [
                 "EDGE_REMOVED",
                 "org.jgrapht.event",
                 "GraphEdgeChangeEvent",
-                "public static final int EDGE_REMOVED = 24;"
+                "/**\n * Edge removed event. This event is fired after an edge is removed from a\n * graph.\n */\npublic static final int EDGE_REMOVED = 24;"
             ],
             [
                 "CONNECTED_COMPONENT_STARTED",
                 "org.jgrapht.event",
                 "ConnectedComponentTraversalEvent",
-                "public static final int CONNECTED_COMPONENT_STARTED = 31;"
+                "/**\n * Connected component traversal started event.\n */\npublic static final int CONNECTED_COMPONENT_STARTED = 31;"
             ],
             [
                 "CONNECTED_COMPONENT_FINISHED",
                 "org.jgrapht.event",
                 "ConnectedComponentTraversalEvent",
-                "public static final int CONNECTED_COMPONENT_FINISHED = 32;"
+                "/**\n * Connected component traversal finished event.\n */\npublic static final int CONNECTED_COMPONENT_FINISHED = 32;"
             ],
             [
                 "BEFORE_VERTEX_ADDED",
                 "org.jgrapht.event",
                 "GraphVertexChangeEvent",
-                "public static final int BEFORE_VERTEX_ADDED = 11;"
+                "/**\n * Before vertex added event. This event is fired before a vertex is added\n * to a graph.\n */\npublic static final int BEFORE_VERTEX_ADDED = 11;"
             ],
             [
                 "BEFORE_VERTEX_REMOVED",
                 "org.jgrapht.event",
                 "GraphVertexChangeEvent",
-                "public static final int BEFORE_VERTEX_REMOVED = 12;"
+                "/**\n * Before vertex removed event. This event is fired before a vertex is\n * removed from a graph.\n */\npublic static final int BEFORE_VERTEX_REMOVED = 12;"
             ],
             [
                 "VERTEX_ADDED",
                 "org.jgrapht.event",
                 "GraphVertexChangeEvent",
-                "public static final int VERTEX_ADDED = 13;"
+                "/**\n * Vertex added event. This event is fired after a vertex is added to a\n * graph.\n */\npublic static final int VERTEX_ADDED = 13;"
             ],
             [
                 "VERTEX_REMOVED",
                 "org.jgrapht.event",
                 "GraphVertexChangeEvent",
-                "public static final int VERTEX_REMOVED = 14;"
+                "/**\n * Vertex removed event. This event is fired after a vertex is removed from\n * a graph.\n */\npublic static final int VERTEX_REMOVED = 14;"
             ],
             [
                 "NULL_NODE",
@@ -3015,31 +3015,31 @@
                 "DEFAULT_EPSILON",
                 "org.jgrapht.alg",
                 "EdmondsKarpMaximumFlow",
-                "public static final double DEFAULT_EPSILON = 0.000000001;"
+                "/**\n * Default tolerance.\n */\npublic static final double DEFAULT_EPSILON = 0.000000001;"
             ],
             [
                 "INSTANCE",
                 "org.jgrapht.alg",
                 "TransitiveClosure",
-                "public static final TransitiveClosure INSTANCE = new TransitiveClosure();"
+                "/**\n * Singleton instance.\n */\npublic static final TransitiveClosure INSTANCE = new TransitiveClosure();"
             ],
             [
                 "INSTANCE",
                 "org.jgrapht.alg",
                 "TransitiveReduction",
-                "public static final TransitiveReduction INSTANCE = new TransitiveReduction();"
+                "/**\n * Singleton instance.\n */\npublic static final TransitiveReduction INSTANCE = new TransitiveReduction();"
             ],
             [
                 "NEGATIVE_UNDIRECTED_EDGE",
                 "org.jgrapht.alg",
                 "BellmanFordIterator",
-                "protected final static String NEGATIVE_UNDIRECTED_EDGE = \"Negative\" + \"edge-weights are not allowed in an unidrected graph!\";"
+                "/**\n * Error message.\n */\nprotected final static String NEGATIVE_UNDIRECTED_EDGE = \"Negative\" + \"edge-weights are not allowed in an unidrected graph!\";"
             ],
             [
                 "DEFAULT_EPSILON",
                 "org.jgrapht.alg.flow",
                 "MaximumFlowAlgorithmBase",
-                "public static final double DEFAULT_EPSILON = 1e-9;"
+                "/**\n * Default tolerance.\n */\npublic static final double DEFAULT_EPSILON = 1e-9;"
             ]
         ],
         "tokensMethodJavadocValues": [],
@@ -3064,52 +3064,16 @@
                 "public boolean equals(Object arg0)"
             ],
             [
-                "addEdgeChain",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "public B addEdgeChain(V first, V second, V... rest)"
-            ],
-            [
-                "toString",
-                "java.lang",
-                "Object",
-                "public String toString()"
-            ],
-            [
-                "removeVertices",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "public B removeVertices(V... vertices)"
-            ],
-            [
-                "buildUnmodifiable",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "public UnmodifiableGraph<V, E> buildUnmodifiable()"
-            ],
-            [
-                "addGraph",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "public B addGraph(Graph<? extends V, ? extends E> sourceGraph)"
-            ],
-            [
-                "clone",
-                "java.lang",
-                "Object",
-                "protected native Object clone() throws CloneNotSupportedException"
-            ],
-            [
                 "addVertices",
                 "org.jgrapht.graph.builder",
                 "AbstractGraphBuilder",
-                "public B addVertices(V... vertices)"
+                "/**\n * Adds each vertex of {@code vertices} to the graph being built.\n *\n * @param vertices the vertices to add\n *\n * @return this builder object\n *\n * @see #addVertex(Object)\n */\npublic B addVertices(V... vertices) {\n    for (V vertex : vertices) {\n        this.addVertex(vertex);\n    }\n    return this.self();\n}"
             ],
             [
-                "addVertex",
+                "self",
                 "org.jgrapht.graph.builder",
                 "AbstractGraphBuilder",
-                "public B addVertex(V vertex)"
+                "/**\n * @return the {@code this} object.\n */\nprotected abstract B self();"
             ],
             [
                 "getClass",
@@ -3118,34 +3082,70 @@
                 "public final native Class<? extends Object> getClass()"
             ],
             [
-                "addEdge",
+                "removeVertices",
                 "org.jgrapht.graph.builder",
                 "AbstractGraphBuilder",
-                "public B addEdge(V source, V target)"
+                "/**\n * Removes each vertex of {@code vertices} from the graph being built, if\n * such vertices exist in graph.\n *\n * @param vertices the vertices to remove\n *\n * @return this builder object\n *\n * @see #removeVertex(Object)\n */\npublic B removeVertices(V... vertices) {\n    for (V vertex : vertices) {\n        this.removeVertex(vertex);\n    }\n    return this.self();\n}"
             ],
             [
-                "removeEdge",
+                "addVertex",
                 "org.jgrapht.graph.builder",
                 "AbstractGraphBuilder",
-                "public B removeEdge(V source, V target)"
-            ],
-            [
-                "self",
-                "org.jgrapht.graph.builder",
-                "AbstractGraphBuilder",
-                "protected abstract B self()"
+                "/**\n * Adds {@code vertex} to the graph being built.\n *\n * @param vertex the vertex to add\n *\n * @return this builder object\n *\n * @see Graph#addVertex(Object)\n */\npublic B addVertex(V vertex) {\n    this.graph.addVertex(vertex);\n    return this.self();\n}"
             ],
             [
                 "build",
                 "org.jgrapht.graph.builder",
                 "AbstractGraphBuilder",
-                "public G build()"
+                "/**\n * Build the graph. Calling any method (including this method) on this\n * builder object after calling this method is undefined behaviour.\n *\n * @return the built graph.\n */\npublic G build() {\n    return this.graph;\n}"
+            ],
+            [
+                "addGraph",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "/**\n * Adds all the vertices and all the edges of the {@code sourceGraph} to the\n * graph being built.\n *\n * @return this builder object\n *\n * @see Graphs#addGraph(Graph, Graph)\n */\npublic B addGraph(Graph<? extends V, ? extends E> sourceGraph) {\n    Graphs.addGraph(this.graph, sourceGraph);\n    return this.self();\n}"
+            ],
+            [
+                "clone",
+                "java.lang",
+                "Object",
+                "protected native Object clone() throws CloneNotSupportedException"
+            ],
+            [
+                "removeEdge",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "/**\n * Removes an edge going from source vertex to target vertex from the graph\n * being built, if such vertices and such edge exist in the graph.\n *\n * @param source source vertex of the edge.\n * @param target target vertex of the edge.\n *\n * @return this builder object\n *\n * @see Graph#removeVertex(Object)\n */\npublic B removeEdge(V source, V target) {\n    this.graph.removeEdge(source, target);\n    return this.self();\n}"
+            ],
+            [
+                "addEdgeChain",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "/**\n * Adds a chain of edges to the graph being built. The vertices are added to\n * the graph, if not already included.\n *\n * @return this builder object\n *\n * @see #addEdge(Object, Object)\n */\npublic B addEdgeChain(V first, V second, V... rest) {\n    this.addEdge(first, second);\n    V last = second;\n    for (V vertex : rest) {\n        this.addEdge(last, vertex);\n        last = vertex;\n    }\n    return this.self();\n}"
+            ],
+            [
+                "addEdge",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "/**\n * Adds an edge to the graph being built. The source and target vertices are\n * added to the graph, if not already included.\n *\n * @param source source vertex of the edge.\n * @param target target vertex of the edge.\n *\n * @return this builder object\n *\n * @see Graphs#addEdgeWithVertices(Graph, Object, Object)\n */\npublic B addEdge(V source, V target) {\n    Graphs.addEdgeWithVertices(this.graph, source, target);\n    return this.self();\n}"
+            ],
+            [
+                "toString",
+                "java.lang",
+                "Object",
+                "public String toString()"
             ],
             [
                 "removeVertex",
                 "org.jgrapht.graph.builder",
                 "AbstractGraphBuilder",
-                "public B removeVertex(V vertex)"
+                "/**\n * Removes {@code vertex} from the graph being built, if such vertex exist\n * in graph.\n *\n * @param vertex the vertex to remove\n *\n * @return this builder object\n *\n * @see Graph#removeVertex(Object)\n */\npublic B removeVertex(V vertex) {\n    this.graph.removeVertex(vertex);\n    return this.self();\n}"
+            ],
+            [
+                "buildUnmodifiable",
+                "org.jgrapht.graph.builder",
+                "AbstractGraphBuilder",
+                "/**\n * Build an unmodifiable version graph. Calling any method (including this\n * method) on this builder object after calling this method is undefined\n * behaviour.\n *\n * @return the built unmodifiable graph.\n *\n * @see #build()\n */\npublic UnmodifiableGraph<V, E> buildUnmodifiable() {\n    return new UnmodifiableGraph<V, E>(this.graph);\n}"
             ]
         ],
         "tokensMethodVariablesNonPrivateNonStaticAttributes": [
